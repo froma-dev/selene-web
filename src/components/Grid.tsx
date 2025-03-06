@@ -4,8 +4,6 @@ import GridImage from "@components/GridImage"
 
 const Grid = ({gridItems}: {gridItems: GridItem[]}) => {
 
-
-
   return (
     <ul className="grid">
       {gridItems.map((item) => (
