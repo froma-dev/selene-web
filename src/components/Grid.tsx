@@ -6,9 +6,9 @@ const Grid = ({gridItems}: {gridItems: GridItem[]}) => {
     <ul className="grid">
       {gridItems.map((item) => (
         <li key={item.id} className="grid-item">
+          <img src={item.image} alt={item.title} />
           <h2>{item.title}</h2>
           <p>{item.content}</p>
-          <img src={item.image} alt={item.title} />
         </li>
     ))}
   </ul>)

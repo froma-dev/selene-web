@@ -12,7 +12,7 @@ function App() {
       id: String(index + 1),
       title: `Title ${index + 1}`,
       content: `Content ${index + 1}`,
-      image: '/vite.svg',
+      image: `https://picsum.photos/800/600?random=${index}`,
       link: '/vite.svg',
     })) as GridItem[]
 
