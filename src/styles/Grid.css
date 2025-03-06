@@ -1,0 +1,17 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    list-style: none;
+}
+
+.grid-item {
+    background-color: #232323;
+    text-decoration: none;
+    list-style: none;
+
+    img {
+        width: 100%;
+        object-fit: cover;
+    }
+}
