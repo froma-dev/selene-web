@@ -10,7 +10,6 @@ import Hero from '@components/Hero'
 import { gsap } from "gsap"
 import { useGSAP } from "@gsap/react";
     
-import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { PixiPlugin } from "gsap/PixiPlugin"
 import { TextPlugin } from "gsap/TextPlugin"
 
@@ -28,7 +27,7 @@ function App() {
     })) as GridItem[]
     
     setGridItems(newGridItems)
-    gsap.registerPlugin(useGSAP,ScrollTrigger,PixiPlugin,TextPlugin)
+    gsap.registerPlugin(useGSAP,PixiPlugin,TextPlugin)
   }, [])
 
   const lenis = useLenis(({scroll}) => {
@@ -40,14 +39,16 @@ function App() {
     gsap.fromTo('.gray-flower', 
       { rotate: 0,  x: -360, ease: 'power2.inOut', duration: 1.5 }, 
       { rotate: 180,  x: 0, ease: 'power2.inOut', duration: 1.5 }
-    );
+    )
 }, {scope: heroRef})
 
   return (
     <ReactLenis root>
       <div className="app">
         <Hero ref={heroRef}/>
-        <Grid gridItems={gridItems} />
+        <section className="content">
+          <Grid gridItems={gridItems}/>
+        </section>
       </div>
     </ReactLenis>
   )
