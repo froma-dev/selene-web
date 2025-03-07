@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import '@fontsource-variable/merriweather-sans'
+import '@fontsource/archivo-black';
 import { GridItem } from "./types/Grid"
 import Grid from '@components/Grid'
 import { ReactLenis, useLenis } from 'lenis/react'

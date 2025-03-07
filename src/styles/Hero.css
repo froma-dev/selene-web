@@ -12,7 +12,8 @@
         font-size: 15rem;
         font-weight: 900;
         text-align: left;
-        line-height: 1;
+        line-height: 15rem;
+        font-family: 'Archivo Black', sans-serif;
 
         span {
             display: block;
@@ -20,8 +21,61 @@
     }
 
     p {
-        font-size: 5rem;
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 2rem;
         font-weight: 400;
         text-align: center;
+    }
+}
+
+@media (max-width: 1440px) {
+    .hero {
+        h1 {
+            font-size: 8rem;
+            line-height: 8rem;
+        }
+
+        p {
+            font-size: 2rem;
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .hero {
+        h1 {
+            font-size: 10rem;
+            line-height: 10rem;
+        }
+
+        p {
+            font-size: 3rem;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        h1 {
+            font-size: 10rem;
+            line-height: 10rem;
+        }
+
+        p {
+            font-size: 3rem;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        h1 {
+            font-size: 10rem;
+            line-height: 10rem;
+        }
+
+        p {
+            font-size: 3rem;
+        }
     }
 }
