@@ -12,6 +12,8 @@
   "dependencies": {
     "@fontsource-variable/merriweather-sans": "^5.2.5",
     "@fontsource/archivo-black": "^5.2.5",
+    "@gsap/react": "^2.1.2",
+    "gsap": "^3.12.7",
     "lenis": "^1.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

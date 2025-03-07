@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import '@fontsource-variable/merriweather-sans'
 import '@fontsource/archivo-black'
@@ -6,9 +6,17 @@ import { GridItem } from "./types/Grid"
 import Grid from '@components/Grid'
 import { ReactLenis, useLenis } from 'lenis/react'
 import Hero from '@components/Hero'
+// GSAP
+import { gsap } from "gsap"
+import { useGSAP } from "@gsap/react";
+    
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { PixiPlugin } from "gsap/PixiPlugin"
+import { TextPlugin } from "gsap/TextPlugin"
 
 function App() {
   const [gridItems, setGridItems] = useState<GridItem[]>([])
+  const heroRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const newGridItems = Array.from({ length: 20 }, (_, index) => ({
@@ -18,18 +26,27 @@ function App() {
       image: `https://picsum.photos/800/600?random=${index}`,
       link: '/vite.svg',
     })) as GridItem[]
-
+    
     setGridItems(newGridItems)
+    gsap.registerPlugin(useGSAP,ScrollTrigger,PixiPlugin,TextPlugin)
   }, [])
 
   const lenis = useLenis(({scroll}) => {
     console.log(scroll)
   })
 
+  useGSAP(() => {
+    // gsap code here...
+    gsap.fromTo('.gray-flower', 
+      { rotate: 0,  x: -360, ease: 'power2.inOut', duration: 1.5 }, 
+      { rotate: 180,  x: 0, ease: 'power2.inOut', duration: 1.5 }
+    );
+}, {scope: heroRef})
+
   return (
     <ReactLenis root>
       <div className="app">
-        <Hero />
+        <Hero ref={heroRef}/>
         <Grid gridItems={gridItems} />
       </div>
     </ReactLenis>
