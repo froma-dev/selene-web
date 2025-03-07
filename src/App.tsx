@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { GridItem } from "./types/Grid"
 import Grid from '@components/Grid'
-
+import { ReactLenis, useLenis } from 'lenis/react'
+import Hero from '@components/Hero'
 
 function App() {
   const [gridItems, setGridItems] = useState<GridItem[]>([])
@@ -19,11 +20,17 @@ function App() {
     setGridItems(newGridItems)
   }, [])
 
+  const lenis = useLenis(({scroll}) => {
+    console.log(scroll)
+  })
+
   return (
-    <div className="app">
-      <h1>Hi, I'm Selene</h1>
-      <Grid gridItems={gridItems} />
-    </div>
+    <ReactLenis root>
+      <div className="app">
+        <Hero />
+        <Grid gridItems={gridItems} />
+      </div>
+    </ReactLenis>
   )
 }
 
