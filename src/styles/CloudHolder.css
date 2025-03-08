@@ -1,0 +1,41 @@
+.cloud-holder {
+    display: grid;
+    width: 100%;
+    height: 480px;
+    overflow: hidden;
+    justify-content: stretch;
+
+    svg {
+        width: 100%;
+        height: auto;
+        display: block;
+        grid-column: 1;
+        grid-row: 1;
+        transform: translateY(100%);
+        transition: transform 0.5s var(--spring-transition);
+
+        &:nth-child(1) {
+            transform: translateY(0);
+
+            &:hover {
+                transform: translateY(10px);
+            }
+        }
+
+        &:nth-child(2) {
+            transform: translateY(50px);
+
+            &:hover {
+                transform: translateY(10px);
+            }
+        }
+
+        &:nth-child(3) {
+            transform: translateY(100px);
+
+            &:hover {
+                transform: translateY(60px);
+            }
+        }
+    }
+}
