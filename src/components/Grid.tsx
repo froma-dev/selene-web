@@ -9,7 +9,7 @@ const Grid = ({ gridItems }: { gridItems: GridItem[] }) => {
         <li key={item.id} className="grid-item">
           <GridImage src={item.image} alt={item.title} />
           <h2>{item.title}</h2>
-          <p>{item.content}</p>
+          <p>{item.type}</p>
         </li>
       ))}
     </ul>

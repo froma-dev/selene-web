@@ -1,10 +1,18 @@
-import Tag from "@components/Tag";
+import Tag, { TagProps } from "@components/Tag";
+import "@styles/TagHolder.css";
 
-const TagHolder = ({ tags }: { tags: string[] }) => {
+interface TagHolderProps {
+  tags: TagProps[];
+  selectedTag: string | null;
+}
+
+const TagHolder = ({ tags, selectedTag }: TagHolderProps) => {
   return (
     <div className="tag-holder">
       {tags.map((tag) => {
-        return <Tag name={tag} />;
+        return (
+          <Tag key={tag.name} {...tag} isSelected={tag.id === selectedTag} />
+        );
       })}
     </div>
   );

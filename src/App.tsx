@@ -17,22 +17,37 @@ import Header from "@components/Header";
 import ContentSection from "@components/ContentSection";
 import TagHolder from "@components/TagHolder";
 
+// TODO
+const types = ["video", "illustration", "design", "animation"];
+
 function App() {
   const [gridItems, setGridItems] = useState<GridItem[]>([]);
+  const [filteredGridItems, setFilteredGridItems] = useState<GridItem[]>([]);
+  const [filter, setFilter] = useState("all");
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const newGridItems = Array.from({ length: 20 }, (_, index) => ({
+    gsap.registerPlugin(useGSAP, PixiPlugin, TextPlugin);
+
+    const fetchedGridItems = Array.from({ length: 20 }, (_, index) => ({
       id: String(index + 1),
       title: `Title ${index + 1}`,
       content: `Content ${index + 1}`,
       image: `https://picsum.photos/800/600?random=${index}`,
       link: "/vite.svg",
+      type: types[Math.floor(Math.random() * 4)],
     })) as GridItem[];
 
-    setGridItems(newGridItems);
-    gsap.registerPlugin(useGSAP, PixiPlugin, TextPlugin);
+    setGridItems(fetchedGridItems);
   }, []);
+
+  useEffect(() => {
+    const filteredGridItems = gridItems.filter(
+      (gridItem) => filter === "all" || gridItem.type === filter
+    );
+
+    setFilteredGridItems(filteredGridItems);
+  }, [gridItems, filter]);
 
   useGSAP(
     () => {
@@ -46,6 +61,11 @@ function App() {
     { scope: heroRef }
   );
 
+  const onClickHandler = (filterBy: string) => {
+    if (filter === filterBy) setFilter("all");
+    else setFilter(filterBy);
+  };
+
   return (
     <ReactLenis root>
       <div className="app">
@@ -53,9 +73,39 @@ function App() {
         <Hero ref={heroRef} />
         <ContentSection sectionName="Projects">
           <TagHolder
-            tags={["React", "Typescript", "Next.js", "Tailwind CSS"]}
+            selectedTag={filter}
+            tags={[
+              {
+                id: "video",
+                icon: "📺",
+                name: "Video",
+                buttonTag: true,
+                onClick: () => onClickHandler("video"),
+              },
+              {
+                id: "illustration",
+                icon: "🎨",
+                name: "Ilustración",
+                buttonTag: true,
+                onClick: () => onClickHandler("illustration"),
+              },
+              {
+                id: "design",
+                icon: "👩🏻‍💻",
+                name: "Diseño",
+                buttonTag: true,
+                onClick: () => onClickHandler("design"),
+              },
+              {
+                id: "animation",
+                icon: "👾",
+                name: "Animación",
+                buttonTag: true,
+                onClick: () => onClickHandler("animation"),
+              },
+            ]}
           />
-          <Grid gridItems={gridItems} />
+          <Grid gridItems={filteredGridItems} />
         </ContentSection>
       </div>
     </ReactLenis>

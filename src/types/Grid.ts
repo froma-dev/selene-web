@@ -4,4 +4,5 @@ export type GridItem = {
     content: string;
     image: string;
     link: string;
+    type: string;
 }
