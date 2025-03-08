@@ -9,20 +9,31 @@
     background-color: #232323;
     text-decoration: none;
     list-style: none;
-    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transition:
+        background-color 0.5s var(--color-transition),
+        transform 0.5s var(--spring-transition);
     border-radius: 4px;
     overflow: hidden;
 
     &:hover {
         background-color: #333333;
-        transform: scale(1.05);
+        transform: scale(1.08);
+        z-index: 1;
+    }
+
+    &:not(:hover) {
+        img {
+            filter: opacity(50%)
+        }
     }
 
     img {
         width: 100%;
         object-fit: cover;
         aspect-ratio: 800/600;
-        transition: opacity 0.8s ease-in-out;
+        transition:
+            opacity 0.8s var(--fade-transition),
+            filter 0.5s var(--color-transition);
 
         &.fade-in-on-load {
             opacity: 0;
