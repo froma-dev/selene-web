@@ -1,0 +1,32 @@
+header {
+    display: flex;
+    max-width: 1280px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    img {
+        width: 3rem;
+        height: 3rem;
+    }
+}
+
+nav {
+    display: flex;
+    gap: 1rem;
+
+    ul {
+        display: flex;
+        gap: 1rem;
+        list-style: none;
+    }
+}
+

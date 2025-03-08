@@ -12,7 +12,7 @@ import { useGSAP } from "@gsap/react";
     
 import { PixiPlugin } from "gsap/PixiPlugin"
 import { TextPlugin } from "gsap/TextPlugin"
-
+import Header from '@components/Header'
 function App() {
   const [gridItems, setGridItems] = useState<GridItem[]>([])
   const heroRef = useRef<HTMLDivElement>(null)
@@ -45,6 +45,7 @@ function App() {
   return (
     <ReactLenis root>
       <div className="app">
+        <Header />
         <Hero ref={heroRef}/>
         <section className="content">
           <Grid gridItems={gridItems}/>
