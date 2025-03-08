@@ -4,7 +4,6 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin: 0 auto;
 }
 
@@ -19,14 +18,29 @@ header {
     }
 }
 
-nav {
+.nav {
     display: flex;
     gap: 1rem;
 
-    ul {
+    .nav-list {
         display: flex;
-        gap: 1rem;
+        gap: 2rem;
         list-style: none;
+
+        .nav-item {
+            transition: color 0.3s ease;
+            color: #ffffff;
+
+            .nav-link {
+                text-decoration: none;
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: inherit;
+            }
+
+            &:hover {
+                color: #000000;
+            }
+        }
     }
 }
-
