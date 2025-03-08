@@ -1,0 +1,14 @@
+.content {
+    display: flex;
+    flex-direction: column;
+
+    .content-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 3.5rem;
+        line-height: 3.5rem;
+        font-weight: 700;
+        color: var(--main-text-color);
+        text-align: left;
+        margin-bottom: 1rem;
+    }
+}

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import "@fontsource-variable/merriweather-sans";
 import "@fontsource/archivo-black";
+import "@fontsource-variable/space-grotesk";
 import { GridItem } from "./types/Grid";
 import Grid from "@components/Grid";
 import { ReactLenis, useLenis } from "lenis/react";
@@ -14,6 +15,8 @@ import { PixiPlugin } from "gsap/PixiPlugin";
 import { TextPlugin } from "gsap/TextPlugin";
 import Header from "@components/Header";
 import ContentSection from "@components/ContentSection";
+import TagHolder from "@components/TagHolder";
+
 function App() {
   const [gridItems, setGridItems] = useState<GridItem[]>([]);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -49,6 +52,9 @@ function App() {
         <Header logo={{ src: "/asterisk.svg", alt: "asterisk brand logo" }} />
         <Hero ref={heroRef} />
         <ContentSection sectionName="Projects">
+          <TagHolder
+            tags={["React", "Typescript", "Next.js", "Tailwind CSS"]}
+          />
           <Grid gridItems={gridItems} />
         </ContentSection>
       </div>

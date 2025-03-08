@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import "@styles/ContentSection.css";
 interface ContentSectionProps {
   sectionName?: string;
   children: React.ReactNode;
@@ -36,7 +36,7 @@ const ContentSection = ({ sectionName, children }: ContentSectionProps) => {
 
   return (
     <section className="content" ref={contentRef}>
-      {sectionName ? <h2>{sectionName}</h2> : null}
+      {sectionName ? <h2 className="content-title">{sectionName}</h2> : null}
       {children}
     </section>
   );
