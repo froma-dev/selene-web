@@ -8,8 +8,11 @@ const Grid = ({ gridItems }: { gridItems: GridItem[] }) => {
       {gridItems.map((item) => (
         <li key={item.id} className="grid-item">
           <GridImage src={item.image} alt={item.title} />
-          <h2>{item.title}</h2>
-          <p>{item.type}</p>
+          <div className="grid-item-content">
+            <h2 className="grid-item-title">{item.title}</h2>
+            <p className="grid-item-description">{item.content}</p>
+            <span className="tag">{item.type}</span>
+          </div>
         </li>
       ))}
     </ul>

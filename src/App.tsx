@@ -54,7 +54,7 @@ function App() {
       // gsap code here...
       gsap.fromTo(
         ".gray-flower",
-        { rotate: 0,   x: 360, ease: "power2.inOut", duration: 1.5 },
+        { rotate: 0, x: 360, ease: "power2.inOut", duration: 1.5 },
         { rotate: -180, x: -220, ease: "power2.inOut", duration: 1.5 }
       );
     },
@@ -77,28 +77,28 @@ function App() {
             tags={[
               {
                 id: "video",
-                icon: "📺",
+                icon: " ",
                 name: "Video",
                 buttonTag: true,
                 onClick: () => onClickHandler("video"),
               },
               {
                 id: "illustration",
-                icon: "🎨",
+                icon: " ",
                 name: "Ilustración",
                 buttonTag: true,
                 onClick: () => onClickHandler("illustration"),
               },
               {
                 id: "design",
-                icon: "👩🏻‍💻",
+                icon: " ",
                 name: "Diseño",
                 buttonTag: true,
                 onClick: () => onClickHandler("design"),
               },
               {
                 id: "animation",
-                icon: "👾",
+                icon: " ",
                 name: "Animación",
                 buttonTag: true,
                 onClick: () => onClickHandler("animation"),

@@ -1,7 +1,29 @@
 :root {
-  --main-background-color: #1A1A1A;
-  --main-text-color: #FFFFFF;
-  --main-link-color: #646cff;
+  /* color palette */
+  --gray: #1A1A1A;
+  --white: #FFFFFF;
+  --soft-pink: #FFBDFF;
+  --soft-blue: #8EF6E4;
+  --soft-yellow: #E4FF92;
+  --soft-green: #95FF92;
+  --soft-purple: #9896F1;
+  --soft-red: #FF9595;
+  --soft-orange: #FFC795;
+  --soft-gray: #959595;
+
+  --soft-pink-low-opacity: rgba(255, 189, 255, 0.6);
+  --soft-blue-low-opacity: rgba(142, 246, 228, 0.6);
+  --soft-yellow-low-opacity: rgba(228, 255, 146, 0.6);
+  --soft-green-low-opacity: rgba(149, 255, 146, 0.6);
+  --soft-purple-low-opacity: rgba(152, 150, 241, 0.6);
+  --soft-red-low-opacity: rgba(255, 149, 149, 0.6);
+
+  /* Variables */
+  --main-background-color: var(--gray);
+  --main-text-color: var(--white);
+  --main-link-color: var(--soft-pink);
+  --grid-item-background-color-hover: var(--gray);
+
 
   /* beziers */
   --spring-transition: cubic-bezier(0.34, 1.56, 0.64, 1);
