@@ -15,10 +15,34 @@
 
     &:hover {
         transform: scale(1.05);
+        border-color: var(--soft-purple);
     }
 
     &.selected {
-        background-color: #4D4D4D;
-        color: var(--main-link-color)
+        border-color: var(--soft-green);
+    }
+
+    &.video-tag {
+        /* background-color: var(--soft-blue); */
+        border-color: var(--soft-blue-low-opacity);
+        color: var(--soft-blue-low-opacity);
+    }
+
+    &.illustration-tag {
+        /* background-color: var(--soft-pink); */
+        border-color: var(--soft-pink-low-opacity);
+        color: var(--soft-pink-low-opacity);
+    }
+
+    &.design-tag {
+        /* background-color: var(--soft-yellow); */
+        border-color: var(--soft-yellow-low-opacity);
+        color: var(--soft-yellow-low-opacity);
+    }
+
+    &.animation-tag {
+        /* background-color: var(--soft-purple); */
+        border-color: var(--soft-purple-low-opacity);
+        color: var(--soft-purple-low-opacity);
     }
 }
