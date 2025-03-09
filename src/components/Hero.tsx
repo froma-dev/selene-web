@@ -26,19 +26,18 @@ const Hero = ({ ref }: { ref: React.RefObject<HTMLDivElement | null> }) => {
       {/* <HeroDots /> */}
       <div className="hero-content">
         <h1>
-          <span>Selene</span>
-          <span>Fernández</span>
+          <span>Selene Fernández</span>
+          <img
+            src="/asterisk_no_fill.svg"
+            alt="gray flower"
+            className="gray-flower"
+          />
         </h1>
         <p>
           Step into my creative world! Explore my diverse portfolio showcasing
           design, audiovisual production, and photography. I hope to inspire you
           and ignite your own creative journey.
         </p>
-        <img
-          src="/asterisk_no_fill.svg"
-          alt="gray flower"
-          className="gray-flower"
-        />
       </div>
 
       {/* <div className="hero-image">

@@ -28,7 +28,7 @@ header {
         list-style: none;
 
         .nav-item {
-            transition: color 0.3s ease;
+            transition: color 0.5s var(--color-transition);
             color: #ffffff;
 
             .nav-link {
@@ -39,7 +39,7 @@ header {
             }
 
             &:hover {
-                color: #000000;
+                color: #9896F1;
             }
         }
     }
