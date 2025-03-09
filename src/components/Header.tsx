@@ -1,3 +1,4 @@
+import { useScrollToElement } from "@hooks/useScrollToElement";
 import "@styles/Header.css";
 interface BrandImage {
   src: string;
@@ -10,6 +11,14 @@ interface HeaderProps {
 
 const Header = ({ logo, name }: HeaderProps) => {
   const { src, alt } = logo;
+  const scrollToElement = useScrollToElement();
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    elementId: string
+  ) => {
+    e.preventDefault();
+    scrollToElement(elementId);
+  };
 
   return (
     <header>
@@ -20,18 +29,21 @@ const Header = ({ logo, name }: HeaderProps) => {
       <nav className="nav">
         <ul className="nav-list">
           <li className="nav-item">
-            <a className="nav-link" href="/about">
-              About
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/projects">
+            <a
+              className="nav-link"
+              onClick={(e) => handleNavClick(e, "projects")}
+              href="#projects"
+            >
               Projects
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/contact">
-              Contact
+            <a
+              className="nav-link"
+              onClick={(e) => handleNavClick(e, "connect")}
+              href="#connect"
+            >
+              Connect
             </a>
           </li>
         </ul>

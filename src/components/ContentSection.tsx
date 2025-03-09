@@ -4,11 +4,12 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "@styles/ContentSection.css";
 interface ContentSectionProps {
+  id: string;
   sectionName?: string;
   children: React.ReactNode;
 }
 
-const ContentSection = ({ sectionName, children }: ContentSectionProps) => {
+const ContentSection = ({ id, sectionName, children }: ContentSectionProps) => {
   const contentRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -28,14 +29,13 @@ const ContentSection = ({ sectionName, children }: ContentSectionProps) => {
         scrollTrigger: ".content",
         y: -80,
         opacity: 1,
-        duration: 1.5,
-        scrub: 1,
+        duration: 1.5
       }
     );
   });
 
   return (
-    <section className="content" ref={contentRef}>
+    <section className="content" id={id} ref={contentRef}>
       {sectionName ? <h2 className="content-title">{sectionName}</h2> : null}
       {children}
     </section>

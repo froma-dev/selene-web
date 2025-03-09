@@ -71,7 +71,7 @@ function App() {
       <div className="app">
         <Header logo={{ src: "/asterisk.svg", alt: "asterisk brand logo" }} />
         <Hero ref={heroRef} />
-        <ContentSection sectionName="Projects">
+        <ContentSection id="projects" sectionName="Projects">
           <TagHolder
             selectedTag={filter}
             tags={[

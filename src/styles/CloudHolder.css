@@ -4,8 +4,8 @@
     height: 480px;
     overflow: hidden;
     justify-content: stretch;
-    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #FFBDFF 70%, transparent 100%);
+    /* -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #FFBDFF 70%, transparent 100%); */
 
     svg {
         width: 100%;

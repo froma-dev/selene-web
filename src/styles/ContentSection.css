@@ -1,6 +1,8 @@
 .content {
     display: flex;
     flex-direction: column;
+    padding: 0 2rem;
+    scroll-margin-top: 80px;
 
     .content-title {
         font-family: 'Space Grotesk', sans-serif;
@@ -9,6 +11,6 @@
         font-weight: 700;
         color: var(--main-text-color);
         text-align: left;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
     }
 }
