@@ -4,6 +4,8 @@
     height: 480px;
     overflow: hidden;
     justify-content: stretch;
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #FFBDFF 70%, transparent 100%);
 
     svg {
         width: 100%;
@@ -11,31 +13,26 @@
         display: block;
         grid-column: 1;
         grid-row: 1;
-        transform: translateY(100%);
+        transform: translateY(541px);
         transition: transform 0.5s var(--spring-transition);
 
         &:nth-child(1) {
-            transform: translateY(0);
-
             &:hover {
-                transform: translateY(10px);
+                transform: translateY(10px) !important;
             }
         }
 
         &:nth-child(2) {
-            transform: translateY(50px);
-
             &:hover {
-                transform: translateY(10px);
+                transform: translateY(10px) !important;
             }
         }
 
         &:nth-child(3) {
-            transform: translateY(100px);
-
             &:hover {
-                transform: translateY(60px);
+                transform: translateY(60px) !important;
             }
+
         }
     }
 }

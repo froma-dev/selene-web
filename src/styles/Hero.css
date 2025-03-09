@@ -1,38 +1,69 @@
 .hero {
-    top: 0;
-    left: 0;
+    display: grid;
     width: 100%;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    overflow: hidden;
+    margin-bottom: 7rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 541px;
+    justify-items: center;
 
-    h1 {
-        font-size: 10rem;
-        font-weight: 900;
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        grid-column: 1;
+        grid-row: 1;
         text-align: left;
-        line-height: 10rem;
-        font-family: 'Archivo Black', sans-serif;
+        max-width: 1280px;
 
-        span {
-            display: block;
+        h1 {
+            font-size: 7rem;
+            line-height: 7rem;
+            font-weight: 900;
+            font-family: 'Archivo Black', sans-serif;
+
+            span {
+                display: block;
+            }
+        }
+
+        p {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 2rem;
+            font-weight: 400;
         }
     }
 
-    p {
-        font-family: 'Archivo Black', sans-serif;
-        font-size: 2rem;
-        font-weight: 400;
-        text-align: center;
+    .hero-image {
+        grid-column: 1;
+        grid-row: 2;
+        max-height: 1080px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 770/1369;
+            object-fit: contain;
+            object-position: bottom;
+            -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+
+        }
+    }
+
+    .cloud-holder {
+        grid-row: 2;
+        align-self: flex-end;
     }
 }
 
 @media (max-width: 1440px) {
     .hero {
         h1 {
-            font-size: 8rem;
-            line-height: 8rem;
+            font-size: 7rem;
+            line-height: 7rem;
         }
 
         p {
@@ -44,8 +75,8 @@
 @media (max-width: 1024px) {
     .hero {
         h1 {
-            font-size: 8rem;
-            line-height: 8rem;
+            font-size: 7rem;
+            line-height: 7rem;
         }
 
         p {

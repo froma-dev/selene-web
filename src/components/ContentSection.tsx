@@ -28,7 +28,7 @@ const ContentSection = ({ sectionName, children }: ContentSectionProps) => {
         scrollTrigger: ".content",
         y: -80,
         opacity: 1,
-        duration: 2,
+        duration: 1.5,
         scrub: 1,
       }
     );
