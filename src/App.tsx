@@ -19,17 +19,33 @@ import FilterList from "@components/FilterList";
 import { type Filter, type FilterProps } from "@components/Filter";
 import ConnectLinks from "@components/ConnectLinks";
 import SocialLinks from "@components/SocialLinks";
-
+import Footer from "@components/Footer";
 const types: Filter[] = ["video", "illustration", "design", "animation"];
 const connectLinks = [
-  { name: "LinkedIn", link: "https://www.linkedin.com/in/selenefer/", icon: "linkedin" },
-  { name: "Behance", link: "https://www.behance.net/selenefer", icon: "behance" },
+  {
+    name: "LinkedIn",
+    link: "https://www.linkedin.com/in/selenefer/",
+    icon: "linkedin",
+  },
+  {
+    name: "Behance",
+    link: "https://www.behance.net/selenefer",
+    icon: "behance",
+  },
   { name: "Dribbble", link: "https://dribbble.com/SeleneF", icon: "dribbble" },
 ];
 
 const socialsLinks = [
-  { name: "YouTube", link: "https://www.youtube.com/@selenecreates", icon: "youtube" },
-  { name: "TikTok", link: "https://www.tiktok.com/@selene.creates", icon: "tiktok" },
+  {
+    name: "YouTube",
+    link: "https://www.youtube.com/@selenecreates",
+    icon: "youtube",
+  },
+  {
+    name: "TikTok",
+    link: "https://www.tiktok.com/@selene.creates",
+    icon: "tiktok",
+  },
 ];
 
 const connectDescription =
@@ -129,6 +145,7 @@ function App() {
             <SocialLinks socialLinks={socialsLinks} />
           </div>
         </ContentSection>
+        <Footer />
       </div>
     </ReactLenis>
   );

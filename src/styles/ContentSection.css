@@ -17,7 +17,7 @@
     .content-description {
         font-family: 'Archivo Black', sans-serif;
         font-size: 1.15rem;
-        width: 80ch;
+        max-width: 80ch;
         font-weight: 400;
         text-align: left;
     }
