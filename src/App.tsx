@@ -139,6 +139,7 @@ function App() {
           id="connect"
           sectionName="Connect"
           sectionDescription={connectDescription}
+          centered
         >
           <div className="connect-container">
             <ConnectLinks connectLinks={connectLinks} />

@@ -3,13 +3,25 @@
     width: auto;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
+    color: var(--soft-purple-low-opacity);
+
+    &:hover {
+      color: var(--soft-purple);
+    }
 
     a {
-      font-size: 2rem;
+      font-size: 1.6rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      color: inherit;
+
+      svg {
+        color: var(--soft-purple);
+        width: 2rem;
+        height: 2rem;
+      }
     }
   }
 }

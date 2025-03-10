@@ -22,7 +22,7 @@ const ConnectLinks = ({ connectLinks }: { connectLinks: ConnectLink[] }) => {
         <li key={link.name} className="connect-link">
           <a href={link.link}>
             {mapIcon[link.icon]}
-            {link.name}
+            <span>{link.name}</span>
           </a>
         </li>
       ))}

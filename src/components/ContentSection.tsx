@@ -8,6 +8,7 @@ interface ContentSectionProps {
   sectionName?: string;
   sectionDescription?: string;
   children: React.ReactNode;
+  centered?: boolean;
 }
 
 const ContentSection = ({
@@ -15,6 +16,7 @@ const ContentSection = ({
   sectionName,
   sectionDescription,
   children,
+  centered = false,
 }: ContentSectionProps) => {
   const contentRef = useRef<HTMLElement>(null);
 
@@ -24,24 +26,43 @@ const ContentSection = ({
 
   useGSAP(() => {
     gsap.fromTo(
-      ".content",
+      "#work",
       {
-        scrollTrigger: ".content",
+        scrollTrigger: "#work",
         y: 0,
         opacity: 0,
         ease: "power2.inOut",
       },
       {
-        scrollTrigger: ".content",
+        scrollTrigger: "#work",
         y: -80,
         opacity: 1,
-        duration: 1.5,
+        duration: 1.25,
+      }
+    );
+    gsap.fromTo(
+      "#connect",
+      {
+        scrollTrigger: "#connect",
+        y: 0,
+        opacity: 0,
+        ease: "power2.inOut",
+      },
+      {
+        scrollTrigger: "#connect",
+        y: -80,
+        opacity: 1,
+        duration: 1.25,
       }
     );
   });
 
   return (
-    <section className="content" id={id} ref={contentRef}>
+    <section
+      className={`content ${centered ? "centered" : ""}`}
+      id={id}
+      ref={contentRef}
+    >
       {sectionName ? <h2 className="content-title">{sectionName}</h2> : null}
       {sectionDescription ? (
         <p className="content-description">{sectionDescription}</p>
