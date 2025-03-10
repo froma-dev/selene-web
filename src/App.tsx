@@ -5,7 +5,7 @@ import "@fontsource/archivo-black";
 import "@fontsource-variable/space-grotesk";
 import { GridItem } from "./types/Grid";
 import Grid from "@components/Grid";
-import { ReactLenis, useLenis } from "lenis/react";
+import { ReactLenis } from "lenis/react";
 import Hero from "@components/Hero";
 // GSAP
 import { gsap } from "gsap";
@@ -15,19 +15,38 @@ import { PixiPlugin } from "gsap/PixiPlugin";
 import { TextPlugin } from "gsap/TextPlugin";
 import Header from "@components/Header";
 import ContentSection from "@components/ContentSection";
-import TagHolder from "@components/TagHolder";
+import FilterList from "@components/FilterList";
+import { type Filter, type FilterProps } from "@components/Filter";
 
-// TODO
-const types = ["video", "illustration", "design", "animation"];
+const types: Filter[] = ["video", "illustration", "design", "animation"];
 
 function App() {
   const [gridItems, setGridItems] = useState<GridItem[]>([]);
   const [filteredGridItems, setFilteredGridItems] = useState<GridItem[]>([]);
-  const [filter, setFilter] = useState("all");
+  const [filters, setFilters] = useState<Filter[]>([...types]);
+  const [filtersList, setFiltersList] = useState<FilterProps[]>([]);
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(useGSAP, PixiPlugin, TextPlugin);
+    const filtersList = [
+      {
+        id: "video",
+        name: "Video",
+      },
+      {
+        id: "illustration",
+        name: "Ilustración",
+      },
+      {
+        id: "design",
+        name: "Diseño",
+      },
+      {
+        id: "animation",
+        name: "Animación",
+      },
+    ] as FilterProps[];
 
     const fetchedGridItems = Array.from({ length: 20 }, (_, index) => ({
       id: String(index + 1),
@@ -38,16 +57,19 @@ function App() {
       type: types[Math.floor(Math.random() * 4)],
     })) as GridItem[];
 
+    setFiltersList(filtersList);
     setGridItems(fetchedGridItems);
   }, []);
 
+  /* Filtering grid items based on filters */
   useEffect(() => {
     const filteredGridItems = gridItems.filter(
-      (gridItem) => filter === "all" || gridItem.type === filter
+      (gridItem) =>
+        filters.length === 0 || filters.includes(gridItem.type as Filter)
     );
 
     setFilteredGridItems(filteredGridItems);
-  }, [gridItems, filter]);
+  }, [gridItems, filters]);
 
   useGSAP(
     () => {
@@ -61,9 +83,12 @@ function App() {
     { scope: heroRef }
   );
 
-  const onClickHandler = (filterBy: string) => {
-    if (filter === filterBy) setFilter("all");
-    else setFilter(filterBy);
+  const handleFilterSelection = (filter: Filter) => {
+    if (filters.includes(filter)) {
+      setFilters(filters.filter((currentFilter) => currentFilter !== filter));
+    } else {
+      setFilters([...filters, filter]);
+    }
   };
 
   return (
@@ -72,38 +97,10 @@ function App() {
         <Header logo={{ src: "/asterisk.svg", alt: "asterisk brand logo" }} />
         <Hero ref={heroRef} />
         <ContentSection id="projects" sectionName="Projects">
-          <TagHolder
-            selectedTag={filter}
-            tags={[
-              {
-                id: "video",
-                icon: " ",
-                name: "Video",
-                buttonTag: true,
-                onClick: () => onClickHandler("video"),
-              },
-              {
-                id: "illustration",
-                icon: " ",
-                name: "Ilustración",
-                buttonTag: true,
-                onClick: () => onClickHandler("illustration"),
-              },
-              {
-                id: "design",
-                icon: " ",
-                name: "Diseño",
-                buttonTag: true,
-                onClick: () => onClickHandler("design"),
-              },
-              {
-                id: "animation",
-                icon: " ",
-                name: "Animación",
-                buttonTag: true,
-                onClick: () => onClickHandler("animation"),
-              },
-            ]}
+          <FilterList
+            selectedFilters={filters}
+            onFilterSelect={handleFilterSelection}
+            filters={filtersList}
           />
           <Grid gridItems={filteredGridItems} />
         </ContentSection>
