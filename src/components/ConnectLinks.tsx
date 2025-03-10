@@ -3,10 +3,11 @@ import LinkedinIcon from "@assets/LinkedinIcon.jsx";
 import BehanceIcon from "@assets/BehanceIcon.jsx";
 import DribbbleIcon from "@assets/DribbbleIcon.jsx";
 
-type ConnectLink = {
+type ConnectIcon = keyof typeof mapIcon;
+export type ConnectLink = {
   name: string;
   link: string;
-  icon: keyof typeof mapIcon;
+  icon: ConnectIcon;
 };
 
 const mapIcon = {

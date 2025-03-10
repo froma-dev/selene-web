@@ -2,10 +2,11 @@ import "@styles/SocialLinks.css";
 import YouTubeIcon from "@assets/YoutubeIcon.jsx";
 import TikTokIcon from "@assets/TikTokIcon.jsx";
 
-type SocialLink = {
+type SocialIcon = keyof typeof mapIcon;
+export type SocialLink = {
   name: string;
   link: string;
-  icon: keyof typeof mapIcon;
+  icon: SocialIcon;
 };
 
 const mapIcon = {

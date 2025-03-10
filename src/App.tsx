@@ -17,11 +17,11 @@ import Header from "@components/Header";
 import ContentSection from "@components/ContentSection";
 import FilterList from "@components/FilterList";
 import { type Filter, type FilterProps } from "@components/Filter";
-import ConnectLinks from "@components/ConnectLinks";
-import SocialLinks from "@components/SocialLinks";
+import ConnectLinks, { type ConnectLink } from "@components/ConnectLinks";
+import SocialLinks, { type SocialLink } from "@components/SocialLinks";
 import Footer from "@components/Footer";
 const types: Filter[] = ["video", "illustration", "design", "animation"];
-const connectLinks = [
+const connectLinks: ConnectLink[] = [
   {
     name: "LinkedIn",
     link: "https://www.linkedin.com/in/selenefer/",
@@ -35,7 +35,7 @@ const connectLinks = [
   { name: "Dribbble", link: "https://dribbble.com/SeleneF", icon: "dribbble" },
 ];
 
-const socialsLinks = [
+const socialsLinks: SocialLink[] = [
   {
     name: "YouTube",
     link: "https://www.youtube.com/@selenecreates",
