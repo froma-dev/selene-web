@@ -10,7 +10,12 @@ interface ContentSectionProps {
   children: React.ReactNode;
 }
 
-const ContentSection = ({ id, sectionName, sectionDescription, children }: ContentSectionProps) => {
+const ContentSection = ({
+  id,
+  sectionName,
+  sectionDescription,
+  children,
+}: ContentSectionProps) => {
   const contentRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -30,15 +35,17 @@ const ContentSection = ({ id, sectionName, sectionDescription, children }: Conte
         scrollTrigger: ".content",
         y: -80,
         opacity: 1,
-        duration: 1.5
+        duration: 1.5,
       }
     );
   });
 
   return (
-    <section className="content" id={id} ref={contentRef} sectionDescription={sectionDescription}>
+    <section className="content" id={id} ref={contentRef}>
       {sectionName ? <h2 className="content-title">{sectionName}</h2> : null}
-      {sectionDescription ? <p className="content-description">{sectionDescription}</p> : null}
+      {sectionDescription ? (
+        <p className="content-description">{sectionDescription}</p>
+      ) : null}
       {children}
     </section>
   );
