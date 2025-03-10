@@ -6,10 +6,11 @@ import "@styles/ContentSection.css";
 interface ContentSectionProps {
   id: string;
   sectionName?: string;
+  sectionDescription?: string;
   children: React.ReactNode;
 }
 
-const ContentSection = ({ id, sectionName, children }: ContentSectionProps) => {
+const ContentSection = ({ id, sectionName, sectionDescription, children }: ContentSectionProps) => {
   const contentRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -35,8 +36,9 @@ const ContentSection = ({ id, sectionName, children }: ContentSectionProps) => {
   });
 
   return (
-    <section className="content" id={id} ref={contentRef}>
+    <section className="content" id={id} ref={contentRef} sectionDescription={sectionDescription}>
       {sectionName ? <h2 className="content-title">{sectionName}</h2> : null}
+      {sectionDescription ? <p className="content-description">{sectionDescription}</p> : null}
       {children}
     </section>
   );

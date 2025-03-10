@@ -13,4 +13,11 @@
         text-align: left;
         margin-bottom: 1.5rem;
     }
+
+    .content-description {
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 1.15rem;
+        width: 80ch;
+        font-weight: 400;
+    }
 }

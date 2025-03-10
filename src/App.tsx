@@ -17,8 +17,23 @@ import Header from "@components/Header";
 import ContentSection from "@components/ContentSection";
 import FilterList from "@components/FilterList";
 import { type Filter, type FilterProps } from "@components/Filter";
+import ConnectLinks from "@components/ConnectLinks";
+import SocialLinks from "@components/SocialLinks";
 
 const types: Filter[] = ["video", "illustration", "design", "animation"];
+const connectLinks = [
+  { name: "LinkedIn", link: "https://www.linkedin.com/in/selenefer/" },
+  { name: "Behance", link: "https://www.behance.net/selenefer" },
+  { name: "Dribbble", link: "https://dribbble.com/SeleneF" },
+];
+
+const socialsLinks = [
+  { name: "Instagram", link: "https://www.instagram.com/selene.creates/" },
+  { name: "X", link: "https://x.com/selenefer" },
+];
+
+const connectDescription =
+  "I'm always looking for new opportunities to collaborate and create amazing projects. If you have any questions or just want to say hello, feel free to contact me.";
 
 function App() {
   const [gridItems, setGridItems] = useState<GridItem[]>([]);
@@ -103,6 +118,16 @@ function App() {
             filters={filtersList}
           />
           <Grid gridItems={filteredGridItems} />
+        </ContentSection>
+        <ContentSection
+          id="connect"
+          sectionName="Connect"
+          sectionDescription={connectDescription}
+        >
+          <div className="connect-container">
+            <ConnectLinks connectLinks={connectLinks} />
+            <SocialLinks socialLinks={socialsLinks} />
+          </div>
         </ContentSection>
       </div>
     </ReactLenis>
