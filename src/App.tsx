@@ -108,7 +108,7 @@ function App() {
       gsap.fromTo(
         ".gray-flower",
         { rotate: 0, x: 360, ease: "power2.inOut", duration: 1.5 },
-        { rotate: -180, x: -220, ease: "power2.inOut", duration: 1.5 }
+        { rotate: -180, x: 0, ease: "power2.inOut", duration: 1.5 }
       );
     },
     { scope: heroRef }

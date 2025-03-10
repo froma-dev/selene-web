@@ -17,7 +17,10 @@ const SocialLinks = ({ socialLinks }: { socialLinks: SocialLink[] }) => {
     <ul className="social-links">
       {socialLinks.map((link) => (
         <li key={link.name} className="social-link">
-          <a href={link.link}>{mapIcon[link.icon]}</a>
+          <a href={link.link}>
+            {mapIcon[link.icon]}
+            <span>{link.name}</span>
+          </a>
         </li>
       ))}
     </ul>

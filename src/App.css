@@ -40,7 +40,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 0.5rem;
+  gap: 2rem;
   margin-top: 1rem;
 
   ul {
@@ -49,30 +49,33 @@
     gap: 1rem;
 
     li {
-      list-style: none;
-      width: 3rem;
-      height: 3rem;
+      width: auto;
       display: flex;
       align-items: center;
+      color: var(--soft-purple-low-opacity);
+      list-style: none;
       justify-content: center;
       gap: 0.5rem;
       transition: transform 0.5s var(--spring-transition), color 0.5s var(--color-transition);
 
       &:hover {
+        color: var(--soft-purple);
         transform: scale(1.1);
       }
 
       a {
         width: 100%;
         height: 100%;
+        font-size: 1.6rem;
         display: flex;
         align-items: center;
-        justify-content: center;
-        color: var(--soft-purple);
+        gap: 0.5rem;
+        color: inherit;
 
         svg {
-          width: 100%;
-          height: 100%;
+          width: 2.5rem;
+          height: 2.5rem;
+          color: var(--soft-purple);
         }
       }
     }
