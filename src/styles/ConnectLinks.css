@@ -1,11 +1,15 @@
 .connect-links {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  .connect-link {
+    width: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    a {
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  }
 }
-
-.connect-links li {
-  list-style: none;
-}
-
-

@@ -22,14 +22,14 @@ import SocialLinks from "@components/SocialLinks";
 
 const types: Filter[] = ["video", "illustration", "design", "animation"];
 const connectLinks = [
-  { name: "LinkedIn", link: "https://www.linkedin.com/in/selenefer/" },
-  { name: "Behance", link: "https://www.behance.net/selenefer" },
-  { name: "Dribbble", link: "https://dribbble.com/SeleneF" },
+  { name: "LinkedIn", link: "https://www.linkedin.com/in/selenefer/", icon: "linkedin" },
+  { name: "Behance", link: "https://www.behance.net/selenefer", icon: "behance" },
+  { name: "Dribbble", link: "https://dribbble.com/SeleneF", icon: "dribbble" },
 ];
 
 const socialsLinks = [
-  { name: "Instagram", link: "https://www.instagram.com/selene.creates/" },
-  { name: "X", link: "https://x.com/selenefer" },
+  { name: "YouTube", link: "https://www.youtube.com/@selenecreates", icon: "youtube" },
+  { name: "TikTok", link: "https://www.tiktok.com/@selene.creates", icon: "tiktok" },
 ];
 
 const connectDescription =
@@ -111,7 +111,7 @@ function App() {
       <div className="app">
         <Header logo={{ src: "/asterisk.svg", alt: "asterisk brand logo" }} />
         <Hero ref={heroRef} />
-        <ContentSection id="projects" sectionName="Projects">
+        <ContentSection id="work" sectionName="Work">
           <FilterList
             selectedFilters={filters}
             onFilterSelect={handleFilterSelection}

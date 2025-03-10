@@ -32,10 +32,10 @@ const Header = ({ logo, name }: HeaderProps) => {
             <li className="nav-item">
               <a
                 className="nav-link"
-                onClick={(e) => handleNavClick(e, "projects")}
-                href="#projects"
+                onClick={(e) => handleNavClick(e, "work")}
+                href="#work"
               >
-                Projects
+                Work
               </a>
             </li>
             <li className="nav-item">

@@ -1,9 +1,4 @@
 .social-links {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .social-links li {
-    list-style: none;
-  }
+  display: flex;
+  gap: 1rem;
+}
