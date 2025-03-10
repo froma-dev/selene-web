@@ -38,7 +38,7 @@ const connectDescription =
 function App() {
   const [gridItems, setGridItems] = useState<GridItem[]>([]);
   const [filteredGridItems, setFilteredGridItems] = useState<GridItem[]>([]);
-  const [filters, setFilters] = useState<Filter[]>([...types]);
+  const [filters, setFilters] = useState<Filter[]>([]);
   const [filtersList, setFiltersList] = useState<FilterProps[]>([]);
   const heroRef = useRef<HTMLDivElement>(null);
 
