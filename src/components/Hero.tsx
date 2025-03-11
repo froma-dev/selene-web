@@ -13,7 +13,18 @@ const Hero = ({ ref }: { ref: React.RefObject<HTMLDivElement | null> }) => {
   useGSAP(
     () => {
       gsap.fromTo(
-        [".hero-content", ".hero-image"],
+        "#work",
+        { opacity: 0, y: 200 },
+        { opacity: 1, y: 0, duration: 1.5, ease: "power2.inOut" }
+      );
+    },
+    { scope: ref }
+  );
+
+  useGSAP(
+    () => {
+      gsap.fromTo(
+        "#connect",
         { opacity: 0, y: 200 },
         { opacity: 1, y: 0, duration: 1.5, ease: "power2.inOut" }
       );
