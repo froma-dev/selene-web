@@ -7,10 +7,8 @@ import { GridItem } from "./types/Grid";
 import Grid from "@components/Grid";
 import { ReactLenis } from "lenis/react";
 import Hero from "@components/Hero";
-// GSAP
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-
 import { PixiPlugin } from "gsap/PixiPlugin";
 import { TextPlugin } from "gsap/TextPlugin";
 import Header from "@components/Header";
@@ -20,6 +18,7 @@ import { type Filter, type FilterProps } from "@components/Filter";
 import ConnectLinks, { type ConnectLink } from "@components/ConnectLinks";
 import SocialLinks, { type SocialLink } from "@components/SocialLinks";
 import Footer from "@components/Footer";
+
 const types: Filter[] = ["video", "illustration", "design", "animation"];
 const connectLinks: ConnectLink[] = [
   {
@@ -104,7 +103,6 @@ function App() {
 
   useGSAP(
     () => {
-      // gsap code here...
       gsap.fromTo(
         ".gray-flower",
         { rotate: 0, x: 360, ease: "power2.inOut", duration: 1.5 },
