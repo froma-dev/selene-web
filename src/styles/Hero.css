@@ -3,9 +3,9 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    margin: 4rem 0 5rem;
+    margin: 0 0 5rem;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 450px;
+    grid-template-rows: 1fr auto;
     justify-items: center;
 
     .hero-content {
@@ -60,6 +60,7 @@
     .cloud-holder {
         grid-row: 2;
         align-self: flex-end;
+        max-height: 480px;
     }
 }
 
