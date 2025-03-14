@@ -1,18 +1,9 @@
-import { Category } from "./Category";
-type AssetMedia = {
-    url: string;
-}
-type AssetThumbnail = {
-    url: string;
-}
-
-export interface Asset {
+export type Asset = {
     title: string;
     description: string;
-    thumbnail: AssetThumbnail;
+    thumbnail: string;
     url: string;
-    categories: Category[];
-    media: AssetMedia[];
-}
-
-export type { AssetMedia, AssetThumbnail };
+    categories: string[];
+    media: string[];
+    id: string;
+};

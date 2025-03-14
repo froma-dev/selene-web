@@ -1,11 +1,10 @@
 import "@styles/Filter.css";
 
-export type Filter = "video" | "illustration" | "design" | "animation";
 export interface FilterProps {
-  id: Filter;
+  id: string;
   name: string;
   isSelected?: boolean;
-  onClick?: (filter: Filter) => void;
+  onClick?: (filter: string) => void;
   className?: string;
 }
 

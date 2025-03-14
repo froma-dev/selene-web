@@ -1,8 +1,8 @@
 import { GraphQLClient, gql } from "graphql-request";
 
-import { Asset, AssetThumbnail, AssetMedia } from "src/types/Asset";
+import { Asset } from "src/types/Asset";
 import { GRAPHQL_API_BASE_URL } from "@src/config";
-import { Category } from "@src/types/Category";
+import { Category, CategoryWithId } from "@src/types/Category";
 import { type LinkData, type LinkIcon, type LinkType } from "@components/Link";
 
 const gqlClient = new GraphQLClient(GRAPHQL_API_BASE_URL);
@@ -10,6 +10,7 @@ const gqlClient = new GraphQLClient(GRAPHQL_API_BASE_URL);
 const QUERY_WORKS = gql`
   query {
     works {
+      documentId
       title
       description
       thumbnail {
@@ -28,6 +29,7 @@ const QUERY_WORKS = gql`
 const QUERY_CATEGORIES = gql`
   query {
     categories {
+      slug
       name
     }
   }
@@ -47,16 +49,18 @@ interface APIPortfolio {
   works: {
     title: string;
     description: string;
-    thumbnail: AssetThumbnail;
+    thumbnail: { url: string }[];
     url: string;
-    categories: Category[];
-    media: AssetMedia[];
+    categories: { name: Category }[];
+    media: { url: string }[];
+    documentId: string;
   }[];
 }
 
 interface APICategories {
   categories: {
     name: Category;
+    slug: string;
   }[];
 }
 
@@ -77,7 +81,30 @@ const getPortfolio = async () => {
 
 const transformGetPortfolio = (data: APIPortfolio): Asset[] => {
   const { works } = data;
-  return works;
+
+  const transformedData = works.map((work) => ({
+    ...work,
+    id: work.documentId,
+    media: transformMedia(work.media),
+    categories: transformFlatCategories(work.categories),
+    thumbnail: transformThumbnail(work.thumbnail),
+  }));
+
+  return transformedData;
+};
+
+const transformMedia = (media: { url: string }[]): string[] => {
+  return media.map((media) => media.url);
+};
+
+const transformFlatCategories = (
+  categories: { name: Category }[]
+): Category[] => {
+  return categories.map((category) => category.name);
+};
+
+const transformThumbnail = (thumbnail: { url: string }[]): string => {
+  return thumbnail[0].url;
 };
 
 const getCategories = async () => {
@@ -87,10 +114,13 @@ const getCategories = async () => {
   return transformedData;
 };
 
-const transformGetCategories = (data: APICategories): Category[] => {
+const transformGetCategories = (data: APICategories): CategoryWithId[] => {
   const { categories } = data;
 
-  return categories.map((category) => category.name);
+  return categories.map((category) => ({
+    name: category.name,
+    id: category.slug,
+  }));
 };
 
 const getContactLinks = async () => {

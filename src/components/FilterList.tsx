@@ -1,12 +1,9 @@
-import Filter, {
-  FilterProps,
-  type Filter as FilterType,
-} from "@components/Filter";
+import Filter, { FilterProps } from "@components/Filter";
 import "@styles/FilterList.css";
 
 interface FilterListProps {
   filters: FilterProps[];
-  selectedFilters: FilterType[];
+  selectedFilters: string[];
   onFilterSelect: FilterProps["onClick"];
 }
 
