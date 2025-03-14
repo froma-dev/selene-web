@@ -30,6 +30,8 @@
       "@hooks/*": ["src/hooks/*"],
       "@pages/*": ["src/pages/*"],
       "@styles/*": ["src/styles/*"],
+      "@services/*": ["src/services/*"],
+      "@src/*": ["src/*"]
     }
   },
   //Defs

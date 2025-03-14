@@ -1,0 +1,1 @@
+export type Category = "Illustration" | "Animation" | "Design" | "Video";

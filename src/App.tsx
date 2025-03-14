@@ -18,7 +18,7 @@ import { type Filter, type FilterProps } from "@components/Filter";
 import ConnectLinks, { type ConnectLink } from "@components/ConnectLinks";
 import SocialLinks, { type SocialLink } from "@components/SocialLinks";
 import Footer from "@components/Footer";
-
+import portfolioService from "@services/portfolio";
 const types: Filter[] = ["video", "illustration", "design", "animation"];
 const connectLinks: ConnectLink[] = [
   {
@@ -78,17 +78,35 @@ function App() {
       },
     ] as FilterProps[];
 
-    const fetchedGridItems = Array.from({ length: 20 }, (_, index) => ({
+    const fetchPortfolio = async () => {
+      const fetchedGridItems = await portfolioService.getPortfolio();
+
+      console.log("--------->>>>", fetchedGridItems);
+
+      setGridItems(fetchedGridItems);
+    };
+
+    /*     Array.from({ length: 20 }, (_, index) => ({
       id: String(index + 1),
       title: `Title ${index + 1}`,
       content: `Content ${index + 1}`,
       image: `https://picsum.photos/800/600?random=${index}`,
       link: "/vite.svg",
       type: types[Math.floor(Math.random() * 4)],
-    })) as GridItem[];
+    })) as GridItem[]; */
+
+    /* 
+    id: String(index + 1),
+    title: `Title ${index + 1}`,
+    description: `Content ${index + 1}`,
+    thumbnail: `https://picsum.photos/800/600?random=${index}`,
+    url: "/vite.svg",
+    category: types[Math.floor(Math.random() * 4)],
+    */
 
     setFiltersList(filtersList);
-    setGridItems(fetchedGridItems);
+    //fetchCategories();
+    fetchPortfolio();
   }, []);
 
   /* Filtering grid items based on filters */
