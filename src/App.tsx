@@ -15,37 +15,11 @@ import Header from "@components/Header";
 import ContentSection from "@components/ContentSection";
 import FilterList from "@components/FilterList";
 import { type Filter, type FilterProps } from "@components/Filter";
-import ConnectLinks, { type ConnectLink } from "@components/ConnectLinks";
-import SocialLinks, { type SocialLink } from "@components/SocialLinks";
+import { type LinkData } from "@components/LinksList";
 import Footer from "@components/Footer";
 import portfolioService from "@services/portfolio";
+import LinksList from "@components/LinksList";
 const types: Filter[] = ["video", "illustration", "design", "animation"];
-const connectLinks: ConnectLink[] = [
-  {
-    name: "LinkedIn",
-    link: "https://www.linkedin.com/in/selenefer/",
-    icon: "linkedin",
-  },
-  {
-    name: "Behance",
-    link: "https://www.behance.net/selenefer",
-    icon: "behance",
-  },
-  { name: "Dribbble", link: "https://dribbble.com/SeleneF", icon: "dribbble" },
-];
-
-const socialsLinks: SocialLink[] = [
-  {
-    name: "YouTube",
-    link: "https://www.youtube.com/@selenecreates",
-    icon: "youtube",
-  },
-  {
-    name: "TikTok",
-    link: "https://www.tiktok.com/@selene.creates",
-    icon: "tiktok",
-  },
-];
 
 const connectDescription =
   "I'm always looking for new opportunities to collaborate and create amazing projects. If you have any questions or just want to say hello, feel free to contact me.";
@@ -53,6 +27,7 @@ const connectDescription =
 function App() {
   const [gridItems, setGridItems] = useState<GridItem[]>([]);
   const [filteredGridItems, setFilteredGridItems] = useState<GridItem[]>([]);
+  const [links, setLinks] = useState<LinkData[]>([]);
   const [filters, setFilters] = useState<Filter[]>([]);
   const [filtersList, setFiltersList] = useState<FilterProps[]>([]);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -85,6 +60,12 @@ function App() {
 
       setGridItems(fetchedGridItems);
     };
+    const fetchLinks = async () => {
+      const fetchedLinks = await portfolioService.getContactLinks();
+
+      console.log("links--------->>>>", fetchedLinks);
+      setLinks(fetchedLinks);
+    };
 
     /*     Array.from({ length: 20 }, (_, index) => ({
       id: String(index + 1),
@@ -107,6 +88,7 @@ function App() {
     setFiltersList(filtersList);
     //fetchCategories();
     fetchPortfolio();
+    fetchLinks();
   }, []);
 
   /* Filtering grid items based on filters */
@@ -158,8 +140,7 @@ function App() {
           centered
         >
           <div className="connect-container">
-            <ConnectLinks connectLinks={connectLinks} />
-            <SocialLinks socialLinks={socialsLinks} />
+            <LinksList links={links} />
           </div>
         </ContentSection>
         <Footer />
