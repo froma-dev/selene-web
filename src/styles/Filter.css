@@ -66,4 +66,16 @@
             border-color: var(--soft-purple);
         }
     }
+
+    &.filter-photography {
+        &:hover {
+            border-color: var(--soft-red-low-opacity);
+            color: var(--soft-red-low-opacity);
+        }
+
+        &.selected {
+            color: var(--soft-red);
+            border-color: var(--soft-red);
+        }
+    }
 }
