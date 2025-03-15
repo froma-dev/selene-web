@@ -1,6 +1,5 @@
 import "@styles/Hero.css";
 import CloudHolder from "./CloudHolder";
-//import HeroDots from './HeroDots'
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useEffect } from "react";
@@ -34,7 +33,6 @@ const Hero = ({ ref }: { ref: React.RefObject<HTMLDivElement | null> }) => {
 
   return (
     <section className="hero" ref={ref}>
-      {/* <HeroDots /> */}
       <div className="hero-content">
         <h1>
           <span>Selene Fernández</span>
