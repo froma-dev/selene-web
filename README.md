@@ -8,6 +8,7 @@ Website built with React and TypeScript. It includes components for displaying s
 * Social media integration.
 * Smooth scrolling navigation with Lenis.
 * Scroll effects using GSAP.
+* Strapi for content management (postgres & graphql)
 
 ## Screenshots
 Hero Section
