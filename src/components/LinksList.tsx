@@ -1,5 +1,3 @@
-import "@styles/ConnectLinks.css";
-import "@styles/SocialLinks.css";
 import Link, { LinkData } from "@components/Link";
 
 type LinksListProps = {

@@ -3,23 +3,22 @@ import "./App.css";
 import "@fontsource-variable/merriweather-sans";
 import "@fontsource/archivo-black";
 import "@fontsource-variable/space-grotesk";
-import Grid from "@components/Grid";
 import { ReactLenis } from "lenis/react";
-import Hero from "@components/Hero";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { PixiPlugin } from "gsap/PixiPlugin";
 import { TextPlugin } from "gsap/TextPlugin";
 import Header from "@components/Header";
+import Hero from "@components/Hero";
+import Grid from "@components/Grid";
 import ContentSection from "@components/ContentSection";
-import FilterList from "@components/FilterList";
-import { type Filter, type FilterProps } from "@components/Filter";
-import { type LinkData } from "@components/Link";
 import Footer from "@components/Footer";
-import portfolioService from "@services/portfolio";
 import LinksList from "@components/LinksList";
+import FilterList from "@components/FilterList";
+import { type LinkData } from "@components/Link";
+import portfolioService from "@services/portfolio";
 import { Asset } from "src/types/Asset";
-import { Category, CategoryWithId } from "src/types/Category";
+import { CategoryWithId } from "src/types/Category";
 const connectDescription =
   "I'm always looking for new opportunities to collaborate and create amazing projects. If you have any questions or just want to say hello, feel free to contact me.";
 
@@ -36,41 +35,16 @@ function App() {
 
     const fetchPortfolio = async () => {
       const fetchedGridItems = await portfolioService.getPortfolio();
-
-      console.log("--------->>>>", fetchedGridItems);
-
       setGridItems(fetchedGridItems);
     };
     const fetchLinks = async () => {
       const fetchedLinks = await portfolioService.getContactLinks();
-
-      console.log("links--------->>>>", fetchedLinks);
       setLinks(fetchedLinks);
     };
     const fetchCategories = async () => {
       const fetchedCategories = await portfolioService.getCategories();
-
-      console.log("categories--------->>>>", fetchedCategories);
       setCategories(fetchedCategories);
     };
-
-    /*     Array.from({ length: 20 }, (_, index) => ({
-      id: String(index + 1),
-      title: `Title ${index + 1}`,
-      content: `Content ${index + 1}`,
-      image: `https://picsum.photos/800/600?random=${index}`,
-      link: "/vite.svg",
-      type: types[Math.floor(Math.random() * 4)],
-    })) as GridItem[]; */
-
-    /* 
-    id: String(index + 1),
-    title: `Title ${index + 1}`,
-    description: `Content ${index + 1}`,
-    thumbnail: `https://picsum.photos/800/600?random=${index}`,
-    url: "/vite.svg",
-    category: types[Math.floor(Math.random() * 4)],
-    */
 
     fetchCategories();
     fetchPortfolio();
@@ -98,7 +72,7 @@ function App() {
     { scope: heroRef }
   );
 
-  const handleFilterSelection = (filter: Filter) => {
+  const handleFilterSelection = (filter: string) => {
     if (filters.includes(filter)) {
       setFilters(filters.filter((currentFilter) => currentFilter !== filter));
     } else {

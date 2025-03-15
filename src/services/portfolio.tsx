@@ -38,10 +38,13 @@ const QUERY_CATEGORIES = gql`
 const QUERY_CONTACT_LINKS = gql`
   query {
     contactLinks {
-      name
+      documentId
       href
       icon
-      type
+      name
+      type_link {
+        name
+      }
     }
   }
 `;
@@ -69,7 +72,7 @@ interface APIContactLinks {
     name: string;
     href: string;
     icon: LinkIcon;
-    type: LinkType;
+    type_link: { name: LinkType; documentId: string };
   }[];
 }
 const getPortfolio = async () => {
@@ -124,45 +127,10 @@ const transformGetCategories = (data: APICategories): CategoryWithId[] => {
 };
 
 const getContactLinks = async () => {
-  const data = await Promise.resolve([
-    {
-      name: "YouTube",
-      href: "https://www.youtube.com/@selenecreates",
-      icon: "youtube",
-      type: "social",
-    },
-    {
-      name: "TikTok",
-      href: "https://www.tiktok.com/@selene.creates",
-      icon: "tiktok",
-      type: "social",
-    },
-    {
-      name: "LinkedIn",
-      href: "https://www.linkedin.com/in/selenefer/",
-      icon: "linkedin",
-      type: "connect",
-    },
-    {
-      name: "Behance",
-      href: "https://www.behance.net/selenefer",
-      icon: "behance",
-      type: "connect",
-    },
-    {
-      name: "Dribbble",
-      href: "https://dribbble.com/SeleneF",
-      icon: "dribbble",
-      type: "connect",
-    },
-  ]);
-
-  return data as LinkData[];
-
-  /* const data = await gqlClient.request<APIContactLinks>(QUERY_CONTACT_LINKS);
+  const data = await gqlClient.request<APIContactLinks>(QUERY_CONTACT_LINKS);
   const transformedData = transformGetContactLinks(data);
 
-  return transformedData; */
+  return transformedData;
 };
 
 const transformGetContactLinks = (data: APIContactLinks): LinkData[] => {
@@ -172,7 +140,7 @@ const transformGetContactLinks = (data: APIContactLinks): LinkData[] => {
     name: link.name,
     href: link.href,
     icon: link.icon,
-    type: link.type,
+    type: link.type_link.name,
   }));
 };
 
