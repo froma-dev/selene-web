@@ -1,10 +1,11 @@
+import { Category } from "@src/types/Category";
 import "@styles/Filter.css";
 
 export interface FilterProps {
   id: string;
   name: string;
   isSelected?: boolean;
-  onClick?: (filter: string) => void;
+  onClick?: (filter: Category) => void;
   className?: string;
 }
 
@@ -27,7 +28,7 @@ const Filter = ({
     <button
       id={id}
       className={classNames.join(" ")}
-      onClick={() => onClick?.(id)}
+      onClick={() => onClick?.(name as Category)}
     >
       {/* <span className={"filter-icon"}></span> */}
       <span className={"filter-name"}>{name}</span>

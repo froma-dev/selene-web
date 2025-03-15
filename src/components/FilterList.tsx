@@ -1,10 +1,10 @@
 import Filter, { FilterProps } from "@components/Filter";
 import "@styles/FilterList.css";
-
+import { type Category } from "src/types/Category";
 interface FilterListProps {
   filters: FilterProps[];
   selectedFilters: string[];
-  onFilterSelect: FilterProps["onClick"];
+  onFilterSelect: (filter: Category) => void;
 }
 
 const FilterList = ({
@@ -19,7 +19,7 @@ const FilterList = ({
           <Filter
             key={filter.id}
             {...filter}
-            isSelected={selectedFilters.includes(filter.id)}
+            isSelected={selectedFilters.includes(filter.name)}
             onClick={onFilterSelect}
           />
         );
