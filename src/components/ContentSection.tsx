@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,6 +11,7 @@ interface ContentSectionProps {
   centered?: boolean;
 }
 
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 const ContentSection = ({
   id,
   sectionName,
@@ -20,41 +21,19 @@ const ContentSection = ({
 }: ContentSectionProps) => {
   const contentRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    gsap.registerPlugin(useGSAP, ScrollTrigger);
-  }, []);
-
   useGSAP(() => {
-    gsap.fromTo(
-      "#work",
-      {
-        scrollTrigger: "#work",
-        y: 0,
-        opacity: 0,
-        ease: "power2.inOut",
-      },
-      {
-        scrollTrigger: "#work",
-        y: -80,
-        opacity: 1,
-        duration: 1.25,
-      }
-    );
-    gsap.fromTo(
-      "#connect",
-      {
-        scrollTrigger: "#connect",
-        y: 0,
-        opacity: 0,
-        ease: "power2.inOut",
-      },
-      {
-        scrollTrigger: "#connect",
-        y: -80,
-        opacity: 1,
-        duration: 1.25,
-      }
-    );
+    gsap.to("#work", {
+      scrollTrigger: "#work",
+      y: -80,
+      opacity: 1,
+      duration: 1.25,
+    });
+    gsap.to("#connect", {
+      scrollTrigger: "#connect",
+      y: -80,
+      opacity: 1,
+      duration: 1.25,
+    });
   });
 
   return (

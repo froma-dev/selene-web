@@ -11,28 +11,6 @@ const Hero = () => {
     gsap.registerPlugin(useGSAP);
   }, []);
 
-  /*   useGSAP(
-    () => {
-      gsap.fromTo(
-        "#work",
-        { opacity: 0, y: 200 },
-        { opacity: 1, y: 0, duration: 1.5, ease: "power2.inOut" }
-      );
-    },
-    { scope: ref }
-  );
-
-  useGSAP(
-    () => {
-      gsap.fromTo(
-        "#connect",
-        { opacity: 0, y: 200 },
-        { opacity: 1, y: 0, duration: 1.5, ease: "power2.inOut" }
-      );
-    },
-    { scope: ref }
-  ); */
-
   useGSAP(
     () => {
       gsap.fromTo(
