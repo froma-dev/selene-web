@@ -2,14 +2,16 @@ import "@styles/Hero.css";
 import CloudHolder from "./CloudHolder";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
-const Hero = ({ ref }: { ref: React.RefObject<HTMLDivElement | null> }) => {
+const Hero = () => {
+  const ref = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     gsap.registerPlugin(useGSAP);
   }, []);
 
-  useGSAP(
+  /*   useGSAP(
     () => {
       gsap.fromTo(
         "#work",
@@ -26,6 +28,17 @@ const Hero = ({ ref }: { ref: React.RefObject<HTMLDivElement | null> }) => {
         "#connect",
         { opacity: 0, y: 200 },
         { opacity: 1, y: 0, duration: 1.5, ease: "power2.inOut" }
+      );
+    },
+    { scope: ref }
+  ); */
+
+  useGSAP(
+    () => {
+      gsap.fromTo(
+        ".gray-flower",
+        { rotate: 0, x: 360, ease: "power2.inOut", duration: 1.5 },
+        { rotate: -180, x: 0, ease: "power2.inOut", duration: 1.5 }
       );
     },
     { scope: ref }
@@ -48,11 +61,6 @@ const Hero = ({ ref }: { ref: React.RefObject<HTMLDivElement | null> }) => {
           and ignite your own creative journey.
         </p>
       </div>
-
-      {/* <div className="hero-image">
-        <img src="/me-sticker.png" alt="Selene" className="hero-img" />
-      </div> */}
-
       <CloudHolder />
     </section>
   );
