@@ -51,7 +51,7 @@
     }
 
     .grid-item-content {
-        padding: 0.5rem 0 1rem;
+        padding: 1rem 1rem;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
@@ -72,17 +72,24 @@
             grid-row: 2;
         }
 
-        .tag {
-            font-size: 0.9rem;
-            font-weight: 400;
+        .grid-item-tags {
             grid-column: 2;
             grid-row: 1;
+            display: flex;
+            flex-wrap: wrap;
             justify-self: flex-end;
-            border-radius: 1rem;
-            padding: 0.2rem 0.8rem;
+            gap: 0.5rem;
+            justify-content: flex-end;
 
-            &:hover {
-                transform: none;
+            .tag {
+                font-size: 0.9rem;
+                font-weight: 400;
+                border-radius: 1rem;
+                padding: 0.2rem 0.8rem;
+
+                &:hover {
+                    transform: none;
+                }
             }
         }
     }

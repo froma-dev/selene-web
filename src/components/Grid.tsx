@@ -12,13 +12,15 @@ const Grid = ({ gridItems }: { gridItems: Asset[] }) => {
           <div className="grid-item-content">
             <h2 className="grid-item-title">{item.title}</h2>
             <p className="grid-item-description">{item.description}</p>
-            {item.categories.map((category) => (
-              <Tag
-                key={category}
+            <div className="grid-item-tags">
+              {item.categories.map((category) => (
+                <Tag
+                  key={category}
                 name={category}
                 className={`${category.toLowerCase()}-tag`}
-              />
-            ))}
+                />
+              ))}
+            </div>
           </div>
         </li>
       ))}
