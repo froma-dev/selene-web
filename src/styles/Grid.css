@@ -53,10 +53,11 @@
     .grid-item-content {
         padding: 1rem 1rem;
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: 1fr auto;
         align-items: center;
         justify-items: flex-start;
+        text-align: left;
 
         .grid-item-title {
             font-size: 1.2rem;
@@ -124,12 +125,6 @@
 }
 
 @media (max-width: 768px) {
-    .grid {
-        grid-template-columns: repeat(auto-fit, minmax(calc(100% / 3), 1fr));
-    }
-}
-
-@media (max-width: 480px) {
     .grid {
         grid-template-columns: 1fr;
     }

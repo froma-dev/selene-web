@@ -1,3 +1,4 @@
+
 export type Asset = {
     title: string;
     description: string;
@@ -6,4 +7,8 @@ export type Asset = {
     categories: string[];
     media: string[];
     id: string;
+};
+
+export type YoutubeVideoAssetProps = Asset & {
+    watchUrl: string;
 };
