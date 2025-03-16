@@ -13,54 +13,69 @@ import LinksList from "@components/LinksList";
 import FilterList from "@components/FilterList";
 import { type LinkData } from "@components/Link";
 import portfolioService from "@services/portfolio";
-import { Asset } from "src/types/Asset";
+import { Asset, YoutubeVideoAssetProps } from "src/types/Asset";
 import { Category, CategoryWithId } from "src/types/Category";
+import youtubeService from "@services/youtube";
+import { YT_PLAYLIST_ID } from "@src/config";
 const connectDescription =
   "I'm always looking for new opportunities to collaborate and create amazing projects. If you have any questions or just want to say hello, feel free to contact me.";
 
+type WorkItem = Asset | YoutubeVideoAssetProps;
+
 function App() {
-  const [filteredGridItems, setFilteredGridItems] = useState<Asset[]>([]);
+  const [filteredGridItems, setFilteredGridItems] = useState<WorkItem[]>([]);
   const [filters, setFilters] = useState<Category[]>([]);
+  const [works, setWorks] = useState<WorkItem[]>([]);
   const [portfolio, setPortfolio] = useState<{
     categories: CategoryWithId[];
-    works: Asset[];
     contactLinks: LinkData[];
   }>({
     categories: [],
-    works: [],
     contactLinks: [],
   });
 
   useEffect(() => {
-    const fetchPortfolio = async () => await portfolioService.getPortfolio();
-    const fetchLinks = async () => await portfolioService.getContactLinks();
-    const fetchCategories = async () => await portfolioService.getCategories();
+    let mounted = true;
 
     const fetchAllData = async () => {
-      const fetchedCategories = await fetchCategories();
-      const fetchedPortfolio = await fetchPortfolio();
-      const fetchedLinks = await fetchLinks();
+      try {
+        const [categories, links, portfolioWorks, youtubeWorks] =
+          await Promise.all([
+            portfolioService.getCategories(),
+            portfolioService.getContactLinks(),
+            portfolioService.getPortfolio(),
+            youtubeService.getVideosFromPlaylist(YT_PLAYLIST_ID),
+          ]);
 
-      setPortfolio({
-        categories: fetchedCategories,
-        works: fetchedPortfolio,
-        contactLinks: fetchedLinks,
-      });
+        if (mounted) {
+          setPortfolio({
+            categories,
+            contactLinks: links,
+          });
+          setWorks([...portfolioWorks, ...youtubeWorks]);
+        }
+      } catch (error) {
+        console.error("Fetch error:", error);
+      }
     };
 
     fetchAllData();
+
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   /* Filtering grid items based on filters */
   useEffect(() => {
-    const filteredGridItems = portfolio.works.filter(
+    const filteredGridItems = works.filter(
       (workItem) =>
         filters.length === 0 ||
         filters.some((filter) => workItem.categories.includes(filter))
     );
 
-    setFilteredGridItems(filteredGridItems);
-  }, [portfolio, filters]);
+    setFilteredGridItems(() => filteredGridItems);
+  }, [works, filters]);
 
   const handleFilterSelection = (filter: Category) => {
     if (filters.some((currentFilter) => currentFilter === filter)) {
@@ -83,7 +98,9 @@ function App() {
           />
           {filteredGridItems.length > 0 ? (
             <Grid gridItems={filteredGridItems} />
-          ) : null}
+          ) : (
+            <p>Loading...</p>
+          )}
         </ContentSection>
         <ContentSection
           id="connect"
@@ -92,7 +109,11 @@ function App() {
           centered
         >
           <div className="connect-container">
-            <LinksList links={portfolio.contactLinks} />
+            {portfolio.contactLinks.length > 0 ? (
+              <LinksList links={portfolio.contactLinks} />
+            ) : (
+              <p>Loading...</p>
+            )}
           </div>
         </ContentSection>
         <Footer />

@@ -40,7 +40,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 2rem;
+  gap: 2
+  rem;
   margin-top: 1rem;
 
   ul {

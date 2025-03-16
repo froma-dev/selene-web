@@ -7,9 +7,8 @@ import Tag from "@components/Tag";
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 const Asset = ({ asset }: { asset: AssetType | YoutubeVideoAssetProps }) => {
-  console.log(asset);
   return (
-    <li key={asset.id} className="grid-item">
+    <li className="grid-item">
       {"watchUrl" in asset ? (
         <LiteYouTubeEmbed id={asset.id} title={asset.title} />
       ) : (

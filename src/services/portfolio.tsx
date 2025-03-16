@@ -1,8 +1,7 @@
 import { GraphQLClient, gql } from "graphql-request";
-import youtubeService from "@services/youtube";
 
 import { Asset } from "src/types/Asset";
-import { GRAPHQL_API_BASE_URL, YT_PLAYLIST_ID } from "@src/config";
+import { GRAPHQL_API_BASE_URL } from "@src/config";
 import { Category, CategoryWithId } from "@src/types/Category";
 import { type LinkData, type LinkIcon, type LinkType } from "@components/Link";
 
@@ -78,13 +77,9 @@ interface APIContactLinks {
 }
 const getPortfolio = async () => {
   const portfolioData = await gqlClient.request<APIPortfolio>(QUERY_WORKS);
-  const portfolioVideos = await youtubeService.getVideosFromPlaylist(
-    YT_PLAYLIST_ID
-  );
   const transformedPortfolioData = transformGetPortfolio(portfolioData);
 
-  const transformedData = [...transformedPortfolioData, ...portfolioVideos];
-  return transformedData;
+  return transformedPortfolioData;
 };
 
 const transformGetPortfolio = (data: APIPortfolio): Asset[] => {
