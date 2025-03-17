@@ -3,7 +3,7 @@ import { GraphQLClient, gql } from "graphql-request";
 import { Asset } from "src/types/Asset";
 import { GRAPHQL_API_BASE_URL } from "@src/config";
 import { Category, CategoryWithId } from "@src/types/Category";
-import { type LinkData, type LinkIcon, type LinkType } from "@components/Link";
+import { type LinkData } from "@components/Link";
 
 const gqlClient = new GraphQLClient(GRAPHQL_API_BASE_URL);
 
@@ -35,7 +35,7 @@ const QUERY_CATEGORIES = gql`
   }
 `;
 
-const QUERY_CONTACT_LINKS = gql`
+/* const QUERY_CONTACT_LINKS = gql`
   query {
     contactLinks {
       documentId
@@ -47,7 +47,7 @@ const QUERY_CONTACT_LINKS = gql`
       }
     }
   }
-`;
+`; */
 interface APIPortfolio {
   works: {
     title: string;
@@ -67,14 +67,14 @@ interface APICategories {
   }[];
 }
 
-interface APIContactLinks {
+/* interface APIContactLinks {
   contactLinks: {
     name: string;
     href: string;
     icon: LinkIcon;
     type_link: { name: LinkType; documentId: string };
   }[];
-}
+} */
 const getPortfolio = async () => {
   const portfolioData = await gqlClient.request<APIPortfolio>(QUERY_WORKS);
   const transformedPortfolioData = transformGetPortfolio(portfolioData);
@@ -127,12 +127,42 @@ const transformGetCategories = (data: APICategories): CategoryWithId[] => {
 };
 
 const getContactLinks = async () => {
-  const data = await gqlClient.request<APIContactLinks>(QUERY_CONTACT_LINKS);
-  const transformedData = transformGetContactLinks(data);
-
-  return transformedData;
+  /* const data = await gqlClient.request<APIContactLinks>(QUERY_CONTACT_LINKS);
+  const transformedData = transformGetContactLinks(data); */
+  return await Promise.resolve<LinkData[]>([
+    {
+      name: "YouTube",
+      href: "https://www.youtube.com/@selenecreates",
+      icon: "youtube",
+      type: "social",
+    },
+    {
+      name: "TikTok",
+      href: "https://www.tiktok.com/@selene.creates",
+      icon: "tiktok",
+      type: "social",
+    },
+    {
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/selenefer/",
+      icon: "linkedin",
+      type: "connect",
+    },
+    {
+      name: "Behance",
+      href: "https://www.behance.net/selenefer",
+      icon: "behance",
+      type: "connect",
+    },
+    {
+      name: "Dribbble",
+      href: "https://dribbble.com/SeleneF",
+      icon: "dribbble",
+      type: "connect",
+    },
+  ]);
 };
-
+/* 
 const transformGetContactLinks = (data: APIContactLinks): LinkData[] => {
   const { contactLinks } = data;
 
@@ -142,6 +172,6 @@ const transformGetContactLinks = (data: APIContactLinks): LinkData[] => {
     icon: link.icon,
     type: link.type_link.name,
   }));
-};
+}; */
 
 export default { getPortfolio, getCategories, getContactLinks };
