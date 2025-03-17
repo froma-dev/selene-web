@@ -23,7 +23,6 @@ const connectDescription =
 type WorkItem = Asset | YoutubeVideoAssetProps;
 
 function App() {
-  const [filteredGridItems, setFilteredGridItems] = useState<WorkItem[]>([]);
   const [filters, setFilters] = useState<Category[]>([]);
   const [works, setWorks] = useState<WorkItem[]>([]);
   const [portfolio, setPortfolio] = useState<{
@@ -38,21 +37,24 @@ function App() {
     let mounted = true;
 
     const fetchAllData = async () => {
+      if (!mounted) return;
       try {
-        const [categories, links, portfolioWorks, youtubeWorks] =
-          await Promise.all([
-            portfolioService.getCategories(),
-            portfolioService.getContactLinks(),
-            portfolioService.getPortfolio(),
-            youtubeService.getVideosFromPlaylist(YT_PLAYLIST_ID),
-          ]);
+        const youtubeWorks = await youtubeService.getVideosFromPlaylist(
+          YT_PLAYLIST_ID
+        );
+        if (mounted) setWorks([...youtubeWorks]);
+        const [categories, links, portfolioWorks] = await Promise.all([
+          portfolioService.getCategories(),
+          portfolioService.getContactLinks(),
+          portfolioService.getPortfolio(),
+        ]);
 
         if (mounted) {
           setPortfolio({
             categories,
             contactLinks: links,
           });
-          setWorks([...portfolioWorks, ...youtubeWorks]);
+          setWorks((prevWorks) => [...prevWorks, ...portfolioWorks]);
         }
       } catch (error) {
         console.error("Fetch error:", error);
@@ -66,17 +68,6 @@ function App() {
     };
   }, []);
 
-  /* Filtering grid items based on filters */
-  useEffect(() => {
-    const filteredGridItems = works.filter(
-      (workItem) =>
-        filters.length === 0 ||
-        filters.some((filter) => workItem.categories.includes(filter))
-    );
-
-    setFilteredGridItems(() => filteredGridItems);
-  }, [works, filters]);
-
   const handleFilterSelection = (filter: Category) => {
     if (filters.some((currentFilter) => currentFilter === filter)) {
       setFilters(filters.filter((currentFilter) => currentFilter !== filter));
@@ -84,6 +75,12 @@ function App() {
       setFilters([...filters, filter]);
     }
   };
+
+  const filteredGridItems = works.filter(
+    (workItem) =>
+      filters.length === 0 ||
+      filters.some((filter) => workItem.categories.includes(filter))
+  );
 
   return (
     <ReactLenis root>
