@@ -9,6 +9,7 @@ Website built with React and TypeScript. It includes components for displaying s
 * Smooth scrolling navigation with Lenis.
 * Scroll effects using GSAP.
 * Strapi for content management (postgres & graphql)
+* YouTube api for playlist retrieval and embedding into yt-lite
 
 ## Screenshots
 Hero Section
@@ -16,6 +17,9 @@ Hero Section
 
 Content and Filters
 ![Content and filters](/public/filters_shots.png)
+
+Embedded YouTube Video Content
+![Youtube Videos](/public/youtubeGrid.png)
 
 Contact/Connect
 ![Contact / Connect](/public/connect_shot.png)
