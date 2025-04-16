@@ -38,21 +38,29 @@ function App() {
 
     const fetchAllData = async () => {
       if (!mounted) return;
+
       try {
         const youtubeWorks = await youtubeService.getVideosFromPlaylist(
           YT_PLAYLIST_ID
         );
         if (mounted) setWorks([...youtubeWorks]);
-        const [categories, links, portfolioWorks] = await Promise.all([
+      } catch (error) {
+        console.error("Youtube fetch error:", error);
+      }
+
+      const links = await portfolioService.getContactLinks();
+      if (mounted) setPortfolio({ ...portfolio, contactLinks: links });
+
+      try {
+        const [categories, portfolioWorks] = await Promise.all([
           portfolioService.getCategories(),
-          portfolioService.getContactLinks(),
           portfolioService.getPortfolio(),
         ]);
 
         if (mounted) {
           setPortfolio({
+            ...portfolio,
             categories,
-            contactLinks: links,
           });
           setWorks((prevWorks) => [...prevWorks, ...portfolioWorks]);
         }
