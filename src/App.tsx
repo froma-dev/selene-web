@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 import "@fontsource-variable/merriweather-sans";
 import "@fontsource/archivo-black";
@@ -20,6 +20,7 @@ import { YT_PLAYLIST_ID } from "@src/config";
 const connectDescription =
   "I'm always looking for new opportunities to collaborate and create amazing projects. If you have any questions or just want to say hello, feel free to contact me.";
 
+const contactLinks: LinkData[] = portfolioService.getContactLinks();
 type WorkItem = Asset | YoutubeVideoAssetProps;
 
 function App() {
@@ -27,10 +28,8 @@ function App() {
   const [works, setWorks] = useState<WorkItem[]>([]);
   const [portfolio, setPortfolio] = useState<{
     categories: CategoryWithId[];
-    contactLinks: LinkData[];
   }>({
     categories: [],
-    contactLinks: [],
   });
 
   useEffect(() => {
@@ -47,9 +46,6 @@ function App() {
       } catch (error) {
         console.error("Youtube fetch error:", error);
       }
-
-      const links = await portfolioService.getContactLinks();
-      if (mounted) setPortfolio({ ...portfolio, contactLinks: links });
 
       try {
         const [categories, portfolioWorks] = await Promise.all([
@@ -114,11 +110,7 @@ function App() {
           centered
         >
           <div className="connect-container">
-            {portfolio.contactLinks.length > 0 ? (
-              <LinksList links={portfolio.contactLinks} />
-            ) : (
-              <p>Loading...</p>
-            )}
+            <LinksList links={contactLinks} />
           </div>
         </ContentSection>
         <Footer />

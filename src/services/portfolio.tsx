@@ -126,10 +126,10 @@ const transformGetCategories = (data: APICategories): CategoryWithId[] => {
   }));
 };
 
-const getContactLinks = async () => {
+const getContactLinks = () => {
   /* const data = await gqlClient.request<APIContactLinks>(QUERY_CONTACT_LINKS);
   const transformedData = transformGetContactLinks(data); */
-  return await Promise.resolve<LinkData[]>([
+  return [
     {
       name: "YouTube",
       href: "https://www.youtube.com/@selenecreates",
@@ -160,7 +160,7 @@ const getContactLinks = async () => {
       icon: "dribbble",
       type: "connect",
     },
-  ]);
+  ] as LinkData[];
 };
 /* 
 const transformGetContactLinks = (data: APIContactLinks): LinkData[] => {
