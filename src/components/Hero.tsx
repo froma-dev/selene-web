@@ -35,8 +35,8 @@ const Hero = () => {
         </h1>
         <p>
           Step into my creative world! Explore my diverse portfolio showcasing
-          design, audiovisual production, and photography. I hope to inspire you
-          and ignite your own creative journey.
+          design and audiovisual production. I hope to inspire you and ignite your
+          own creative journey.
         </p>
       </div>
       <CloudHolder />
