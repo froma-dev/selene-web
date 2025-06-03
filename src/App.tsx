@@ -10,7 +10,6 @@ import Grid from "@components/Grid";
 import ContentSection from "@components/ContentSection";
 import Footer from "@components/Footer";
 import LinksList from "@components/LinksList";
-import FilterList from "@components/FilterList";
 import { type LinkData } from "@components/Link";
 import portfolioService from "@services/portfolio";
 import { Asset, YoutubeVideoAssetProps } from "src/types/Asset";
@@ -24,7 +23,7 @@ const contactLinks: LinkData[] = portfolioService.getContactLinks();
 type WorkItem = Asset | YoutubeVideoAssetProps;
 
 function App() {
-  const [filters, setFilters] = useState<Category[]>([]);
+  const [filters] = useState<Category[]>([]);
   const [works, setWorks] = useState<WorkItem[]>([]);
   const [portfolio, setPortfolio] = useState<{
     categories: CategoryWithId[];
@@ -72,14 +71,6 @@ function App() {
     };
   }, []);
 
-  const handleFilterSelection = (filter: Category) => {
-    if (filters.some((currentFilter) => currentFilter === filter)) {
-      setFilters(filters.filter((currentFilter) => currentFilter !== filter));
-    } else {
-      setFilters([...filters, filter]);
-    }
-  };
-
   const filteredGridItems = works.filter(
     (workItem) =>
       filters.length === 0 ||
@@ -92,11 +83,6 @@ function App() {
         <Header logo={{ src: "/asterisk.svg", alt: "asterisk brand logo" }} />
         <Hero />
         <ContentSection id="work" sectionName="Work">
-          <FilterList
-            selectedFilters={filters}
-            onFilterSelect={handleFilterSelection}
-            filters={portfolio.categories}
-          />
           {filteredGridItems.length > 0 ? (
             <Grid gridItems={filteredGridItems} />
           ) : (

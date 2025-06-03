@@ -131,8 +131,14 @@ const getContactLinks = () => {
   const transformedData = transformGetContactLinks(data); */
   return [
     {
-      name: "YouTube",
+      name: "Selene Creates",
       href: "https://www.youtube.com/@selenecreates",
+      icon: "youtube",
+      type: "social",
+    },
+    {
+      name: "Mook Macramé",
+      href: "https://www.youtube.com/mookmacrame",
       icon: "youtube",
       type: "social",
     },
@@ -158,6 +164,12 @@ const getContactLinks = () => {
       name: "Dribbble",
       href: "https://dribbble.com/SeleneF",
       icon: "dribbble",
+      type: "connect",
+    },
+    {
+      name: "Adobe Stock",
+      href: "https://stock.adobe.com/es/contributor/211116694/Selene",
+      icon: "adobe",
       type: "connect",
     },
   ] as LinkData[];

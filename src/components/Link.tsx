@@ -3,6 +3,7 @@ import BehanceIcon from "@assets/BehanceIcon.jsx";
 import DribbbleIcon from "@assets/DribbbleIcon.jsx";
 import YouTubeIcon from "@assets/YoutubeIcon.jsx";
 import TikTokIcon from "@assets/TikTokIcon.jsx";
+import AdobeIcon from "@assets/AdobeIcon.jsx";
 
 const mapIcon = {
   linkedin: <LinkedinIcon />,
@@ -10,6 +11,7 @@ const mapIcon = {
   dribbble: <DribbbleIcon />,
   youtube: <YouTubeIcon />,
   tiktok: <TikTokIcon />,
+  adobe: <AdobeIcon />,
 };
 export type LinkIcon = keyof typeof mapIcon;
 export type LinkType = "connect" | "social";
