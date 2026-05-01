@@ -1,10 +1,8 @@
 .cloud-holder {
     display: grid;
     width: 100%;
-    overflow: hidden;
+    overflow: visible;
     justify-content: stretch;
-    /* -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #FFBDFF 70%, transparent 100%); */
 
     svg {
         width: 100%;
@@ -14,24 +12,27 @@
         grid-row: 1;
         transform: translateY(541px);
         transition: transform 0.5s var(--spring-transition);
+        filter: drop-shadow(0 0 32px currentColor);
 
         &:nth-child(1) {
+            color: var(--electric-lime);
             &:hover {
                 transform: translateY(10px) !important;
             }
         }
 
         &:nth-child(2) {
+            color: var(--neon-cyan);
             &:hover {
                 transform: translateY(10px) !important;
             }
         }
 
         &:nth-child(3) {
+            color: var(--plasma-pink);
             &:hover {
                 transform: translateY(60px) !important;
             }
-
         }
     }
 }

@@ -1,41 +1,63 @@
 :root {
-  /* color palette */
-  --gray: #1A1A1A;
-  --white: #FFFFFF;
-  --soft-pink: #FFBDFF;
-  --soft-blue: #8EF6E4;
-  --soft-yellow: #E4FF92;
-  --soft-green: #95FF92;
-  --soft-purple: #9896F1;
-  --soft-red: #FF9595;
-  --soft-orange: #FFC795;
-  --soft-gray: #959595;
+  /* ── 2026 Vibrant Palette ── */
+  --gray: #0D0D12;
+  --white: #F5F5FF;
 
-  --soft-pink-low-opacity: rgba(255, 189, 255, 0.6);
-  --soft-blue-low-opacity: rgba(142, 246, 228, 0.6);
-  --soft-yellow-low-opacity: rgba(228, 255, 146, 0.6);
-  --soft-green-low-opacity: rgba(149, 255, 146, 0.6);
-  --soft-purple-low-opacity: rgba(152, 150, 241, 0.6);
-  --soft-red-low-opacity: rgba(255, 149, 149, 0.6);
+  /* Vivid accents */
+  --electric-lime:   #C8FF00;
+  --hot-coral:       #FF4D6D;
+  --vivid-violet:    #9B5DE5;
+  --neon-cyan:       #00F5D4;
+  --warm-amber:      #FFB703;
+  --plasma-pink:     #FF2D78;
+  --sky-blue:        #38BDF8;
 
-  /* Variables */
-  --main-background-color: var(--gray);
-  --main-text-color: var(--white);
-  --main-link-color: var(--soft-pink);
-  --grid-item-background-color-hover: var(--gray);
+  /* Legacy aliases kept for backward compat */
+  --soft-pink:       var(--plasma-pink);
+  --soft-blue:       var(--neon-cyan);
+  --soft-yellow:     var(--electric-lime);
+  --soft-green:      var(--electric-lime);
+  --soft-purple:     var(--vivid-violet);
+  --soft-red:        var(--hot-coral);
+  --soft-orange:     var(--warm-amber);
+  --soft-gray:       #6B7280;
 
+  --soft-pink-low-opacity:   rgba(255, 45, 120, 0.55);
+  --soft-blue-low-opacity:   rgba(0, 245, 212, 0.55);
+  --soft-yellow-low-opacity: rgba(200, 255, 0, 0.55);
+  --soft-green-low-opacity:  rgba(200, 255, 0, 0.55);
+  --soft-purple-low-opacity: rgba(155, 93, 229, 0.55);
+  --soft-red-low-opacity:    rgba(255, 77, 109, 0.55);
+
+  /* Semantic tokens */
+  --main-background-color:          var(--gray);
+  --main-text-color:                var(--white);
+  --main-link-color:                var(--plasma-pink);
+  --grid-item-background-color-hover: #16161F;
+
+  /* Gradients */
+  --gradient-hero:   linear-gradient(135deg, #0D0D12 0%, #1A0A2E 50%, #0D1A2E 100%);
+  --gradient-accent: linear-gradient(90deg, var(--electric-lime), var(--neon-cyan), var(--vivid-violet), var(--plasma-pink));
+  --gradient-text:   linear-gradient(135deg, var(--electric-lime) 0%, var(--neon-cyan) 40%, var(--vivid-violet) 70%, var(--plasma-pink) 100%);
+
+  /* Glows */
+  --glow-lime:   0 0 24px rgba(200, 255, 0, 0.45);
+  --glow-cyan:   0 0 24px rgba(0, 245, 212, 0.45);
+  --glow-violet: 0 0 24px rgba(155, 93, 229, 0.45);
+  --glow-coral:  0 0 24px rgba(255, 77, 109, 0.45);
+  --glow-amber:  0 0 24px rgba(255, 183, 3, 0.45);
 
   /* beziers */
   --spring-transition: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --color-transition: cubic-bezier(0.25, 1, 0.5, 1);
-  --fade-transition: cubic-bezier(0.16, 1, 0.3, 1);
+  --color-transition:  cubic-bezier(0.25, 1, 0.5, 1);
+  --fade-transition:   cubic-bezier(0.16, 1, 0.3, 1);
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color-scheme: dark;
+  color: var(--white);
   background-color: var(--main-background-color);
 
   font-synthesis: none;
@@ -44,7 +66,40 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
+/* ── Global keyframes ── */
+@keyframes gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float-up {
+  0%   { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+  50%  { transform: translateY(-18px) rotate(4deg); opacity: 1; }
+  100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { filter: brightness(1) drop-shadow(0 0 6px currentColor); }
+  50%       { filter: brightness(1.3) drop-shadow(0 0 18px currentColor); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -61,6 +116,11 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--main-background-color);
+  /* Subtle noise texture overlay */
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(155, 93, 229, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 110%, rgba(0, 245, 212, 0.12) 0%, transparent 60%);
 }
 
 h1 {
@@ -75,7 +135,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--gray);
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -85,17 +145,38 @@ button:focus-visible {
   outline: none;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
+/* ── Gradient text utility ── */
+.gradient-text {
+  background: var(--gradient-text);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 6s ease infinite;
+}
 
-  a:hover {
-    color: #747bff;
-  }
+/* ── Accent ticker bar ── */
+.accent-bar {
+  width: 100%;
+  overflow: hidden;
+  background: var(--gradient-accent);
+  background-size: 300% 300%;
+  animation: gradient-shift 8s ease infinite;
+  padding: 0.45rem 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0D0D12;
+  white-space: nowrap;
+}
 
-  button {
-    background-color: #f9f9f9;
-  }
+.accent-bar-inner {
+  display: inline-flex;
+  gap: 3rem;
+  animation: marquee 18s linear infinite;
+}
+
+.accent-bar-inner span {
+  flex-shrink: 0;
 }

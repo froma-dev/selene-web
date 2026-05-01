@@ -34,9 +34,9 @@ const CloudHolder = () => {
 
   return (
     <div className="cloud-holder" ref={cloudHolderRef}>
-      <CloudImage fill="#8EF6E4" />
-      <CloudImage fill="#E4FF92" />
-      <CloudImage fill="#FFBDFF" />
+      <CloudImage fill="#C8FF00" />
+      <CloudImage fill="#00F5D4" />
+      <CloudImage fill="#FF2D78" />
     </div>
   );
 };

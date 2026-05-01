@@ -11,25 +11,36 @@
 
     #illustration {
         .tag-icon {
-            background-color: var(--soft-pink);
+            background-color: var(--plasma-pink);
+            box-shadow: 0 0 8px var(--plasma-pink);
         }
     }
 
     #video {
         .tag-icon {
-            background-color: var(--soft-yellow);
+            background-color: var(--neon-cyan);
+            box-shadow: 0 0 8px var(--neon-cyan);
         }
     }
 
     #design {
         .tag-icon {
-            background-color: var(--soft-green);
+            background-color: var(--electric-lime);
+            box-shadow: 0 0 8px var(--electric-lime);
         }
     }
 
     #animation {
         .tag-icon {
-            background-color: var(--soft-purple);
+            background-color: var(--vivid-violet);
+            box-shadow: 0 0 8px var(--vivid-violet);
+        }
+    }
+
+    #photography {
+        .tag-icon {
+            background-color: var(--hot-coral);
+            box-shadow: 0 0 8px var(--hot-coral);
         }
     }
 }
