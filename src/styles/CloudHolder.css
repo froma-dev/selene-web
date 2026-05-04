@@ -1,10 +1,19 @@
+/* Outer wrapper holds the fade mask */
+.cloud-holder-wrapper {
+    grid-row: 2;
+    width: 100%;
+    max-height: 560px;
+    min-height: 35vh;
+    position: relative;
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+}
+
 .cloud-holder {
     display: grid;
     width: 100%;
-    overflow: hidden;
+    overflow: visible;
     justify-content: stretch;
-    /* -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #FFBDFF 70%, transparent 100%); */
 
     svg {
         width: 100%;
@@ -14,24 +23,56 @@
         grid-row: 1;
         transform: translateY(541px);
         transition: transform 0.5s var(--spring-transition);
+        /* No drop-shadow here — glow is handled by .cloud-glow divs outside the mask */
 
         &:nth-child(1) {
+            color: var(--electric-lime);
             &:hover {
                 transform: translateY(10px) !important;
             }
         }
 
         &:nth-child(2) {
+            color: var(--neon-cyan);
             &:hover {
                 transform: translateY(10px) !important;
             }
         }
 
         &:nth-child(3) {
+            color: var(--plasma-pink);
             &:hover {
                 transform: translateY(60px) !important;
             }
-
         }
     }
+}
+
+/* Glow blobs sit behind the wrapper, unmasked */
+.cloud-glow {
+    position: absolute;
+    width: 60%;
+    height: 80px;
+    border-radius: 50%;
+    filter: blur(48px);
+    opacity: 0.45;
+    pointer-events: none;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+}
+
+.cloud-glow-1 {
+    background: var(--electric-lime);
+    top: 0%;
+}
+
+.cloud-glow-2 {
+    background: var(--neon-cyan);
+    top: 5%;
+}
+
+.cloud-glow-3 {
+    background: var(--plasma-pink);
+    top: 10%;
 }

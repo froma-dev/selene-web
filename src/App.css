@@ -46,38 +46,62 @@
   ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.5rem;
+    list-style: none;
+  }
 
-    li {
-      width: auto;
+  li {
+    display: flex;
+    align-items: center;
+
+    a {
+      font-size: 1.5rem;
       display: flex;
       align-items: center;
-      color: var(--soft-purple-low-opacity);
-      list-style: none;
-      justify-content: center;
-      gap: 0.5rem;
-      transition: transform 0.5s var(--spring-transition), color 0.5s var(--color-transition);
+      gap: 0.6rem;
+      color: rgba(245, 245, 255, 0.75);
+      text-decoration: none;
+      transition:
+        color 0.4s var(--color-transition),
+        transform 0.5s var(--spring-transition),
+        filter 0.4s var(--color-transition);
+
+      svg {
+        width: 2.2rem;
+        height: 2.2rem;
+        color: rgba(245, 245, 255, 0.75);
+        transition: color 0.4s var(--color-transition), opacity 0.4s var(--color-transition);
+      }
 
       &:hover {
-        color: var(--soft-purple);
-        transform: scale(1.1);
-      }
-
-      a {
-        width: 100%;
-        height: 100%;
-        font-size: 1.6rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: inherit;
-
-        svg {
-          width: 2.5rem;
-          height: 2.5rem;
-          color: var(--soft-purple);
-        }
+        transform: scale(1.12) translateY(-2px);
       }
     }
+  }
+
+  /* Per-icon accent colors on hover only */
+  li:has([aria-label="Selene Creates"]) a,
+  li:has([aria-label="Mook Macramé"]) a {
+    &:hover { color: var(--hot-coral); filter: drop-shadow(0 0 10px rgba(255,77,109,0.5)); svg { color: var(--hot-coral); } }
+  }
+
+  li:has([aria-label="TikTok"]) a {
+    &:hover { color: var(--neon-cyan); filter: drop-shadow(0 0 10px rgba(0,245,212,0.5)); svg { color: var(--neon-cyan); } }
+  }
+
+  li:has([aria-label="LinkedIn"]) a {
+    &:hover { color: var(--sky-blue); filter: drop-shadow(0 0 10px rgba(56,189,248,0.5)); svg { color: var(--sky-blue); } }
+  }
+
+  li:has([aria-label="Behance"]) a {
+    &:hover { color: var(--vivid-violet); filter: drop-shadow(0 0 10px rgba(155,93,229,0.5)); svg { color: var(--vivid-violet); } }
+  }
+
+  li:has([aria-label="Dribbble"]) a {
+    &:hover { color: var(--plasma-pink); filter: drop-shadow(0 0 10px rgba(255,45,120,0.5)); svg { color: var(--plasma-pink); } }
+  }
+
+  li:has([aria-label="Adobe Stock"]) a {
+    &:hover { color: var(--warm-amber); filter: drop-shadow(0 0 10px rgba(255,183,3,0.5)); svg { color: var(--warm-amber); } }
   }
 }
