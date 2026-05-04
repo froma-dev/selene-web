@@ -99,6 +99,81 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes asterisk-color {
+  0%   { color: var(--electric-lime);  filter: drop-shadow(0 0 14px var(--electric-lime)); }
+  25%  { color: var(--neon-cyan);      filter: drop-shadow(0 0 14px var(--neon-cyan)); }
+  50%  { color: var(--vivid-violet);   filter: drop-shadow(0 0 14px var(--vivid-violet)); }
+  75%  { color: var(--plasma-pink);    filter: drop-shadow(0 0 14px var(--plasma-pink)); }
+  100% { color: var(--electric-lime);  filter: drop-shadow(0 0 14px var(--electric-lime)); }
+}
+
+/* ── Lava lamp blobs ── */
+@keyframes blob-1 {
+  0%   { transform: translate(0%, 0%)    scale(1); }
+  25%  { transform: translate(8%, 12%)   scale(1.08); }
+  50%  { transform: translate(-6%, 20%)  scale(0.95); }
+  75%  { transform: translate(-12%, 5%)  scale(1.05); }
+  100% { transform: translate(0%, 0%)    scale(1); }
+}
+
+@keyframes blob-2 {
+  0%   { transform: translate(0%, 0%)    scale(1); }
+  25%  { transform: translate(-10%, -8%) scale(1.06); }
+  50%  { transform: translate(8%, -15%)  scale(0.97); }
+  75%  { transform: translate(14%, 6%)   scale(1.04); }
+  100% { transform: translate(0%, 0%)    scale(1); }
+}
+
+@keyframes blob-3 {
+  0%   { transform: translate(0%, 0%)    scale(1); }
+  33%  { transform: translate(6%, -10%)  scale(1.1); }
+  66%  { transform: translate(-8%, 8%)   scale(0.93); }
+  100% { transform: translate(0%, 0%)    scale(1); }
+}
+
+.lava-blobs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.lava-blobs span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.12;
+  mix-blend-mode: screen;
+}
+
+.lava-blobs span:nth-child(1) {
+  width: 70vw;
+  height: 70vw;
+  background: var(--vivid-violet);
+  top: -20%;
+  left: -25%;
+  animation: blob-1 18s ease-in-out infinite;
+}
+
+.lava-blobs span:nth-child(2) {
+  width: 60vw;
+  height: 60vw;
+  background: var(--neon-cyan);
+  bottom: -15%;
+  right: -20%;
+  animation: blob-2 22s ease-in-out infinite;
+}
+
+.lava-blobs span:nth-child(3) {
+  width: 50vw;
+  height: 50vw;
+  background: var(--plasma-pink);
+  top: 35%;
+  left: 50%;
+  animation: blob-3 26s ease-in-out infinite;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -117,10 +192,6 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: var(--main-background-color);
-  /* Subtle noise texture overlay */
-  background-image:
-    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(155, 93, 229, 0.18) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 110%, rgba(0, 245, 212, 0.12) 0%, transparent 60%);
 }
 
 h1 {

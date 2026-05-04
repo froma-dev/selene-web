@@ -79,6 +79,10 @@ function App() {
 
   return (
     <ReactLenis root>
+      {/* Lava lamp background blobs */}
+      <div className="lava-blobs" aria-hidden="true">
+        <span /><span /><span />
+      </div>
       <div className="app">
         <Header logo={{ src: "/asterisk.svg", alt: "asterisk brand logo" }} />
         <Hero />

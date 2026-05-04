@@ -55,11 +55,19 @@
                 background-clip: text;
                 animation: gradient-shift 7s ease infinite;
             }
+
+            .gray-flower {
+                width: 10rem;
+                height: 10rem;
+                flex-shrink: 0;
+                color: var(--electric-lime);
+                filter: drop-shadow(0 0 14px var(--electric-lime));
+            }
         }
 
         p {
             font-family: 'Archivo Black', sans-serif;
-            font-size: 1.15rem;
+            font-size: 1.4rem;
             max-width: 70ch;
             font-weight: 400;
             color: rgba(245, 245, 255, 0.72);
@@ -206,7 +214,7 @@
             }
 
             p {
-                font-size: 0.85rem;
+                font-size: 1rem;
             }
         }
     }

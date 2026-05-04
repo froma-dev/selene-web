@@ -3,6 +3,14 @@ import CloudHolder from "./CloudHolder";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useEffect, useRef } from "react";
+import {
+  asteriskAnimations,
+  type AsteriskAnimationName,
+} from "@src/animations/asteriskAnimations";
+
+interface HeroProps {
+  asteriskAnimation?: AsteriskAnimationName;
+}
 
 const TICKER_ITEMS = [
   "Design", "✦", "Motion", "✦", "Illustration", "✦",
@@ -11,7 +19,7 @@ const TICKER_ITEMS = [
   "Photography", "✦", "Video", "✦", "Creative Direction", "✦",
 ];
 
-const Hero = () => {
+const Hero = ({ asteriskAnimation = "warmBreath" }: HeroProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -20,11 +28,8 @@ const Hero = () => {
 
   useGSAP(
     () => {
-      gsap.fromTo(
-        ".gray-flower",
-        { rotate: 0, x: 360, ease: "power2.inOut", duration: 1.5 },
-        { rotate: -180, x: 0, ease: "power2.inOut", duration: 1.5 }
-      );
+      // Run the chosen asterisk animation
+      asteriskAnimations[asteriskAnimation](".gray-flower");
 
       // Stagger-reveal hero text
       gsap.fromTo(
@@ -56,11 +61,21 @@ const Hero = () => {
         <div className="hero-content">
           <h1>
             <span>Selene Fernández</span>
-            <img
-              src="/asterisk_no_fill.svg"
-              alt="decorative asterisk"
+            <svg
               className="gray-flower"
-            />
+              viewBox="0 0 234 244"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M94.0267 241.129L97.8585 153.763L25.353 201.178L2.86138 162.188L79.1988 122.237L2.85425 82.7735L25.3459 42.822L97.8514 90.237L94.0196 2.87781L139.488 2.87781L135.656 90.237L208.162 42.822L231.131 82.7735L154.316 122.244L231.131 162.195L208.162 201.185L135.656 153.77L139.488 241.137H94.0196L94.0267 241.129Z"
+                stroke="currentColor"
+                strokeWidth="4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </h1>
           <p>
             Step into my creative world! Explore my diverse portfolio showcasing
