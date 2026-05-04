@@ -12,13 +12,6 @@ interface HeroProps {
   asteriskAnimation?: AsteriskAnimationName;
 }
 
-const TICKER_ITEMS = [
-  "Design", "✦", "Motion", "✦", "Illustration", "✦",
-  "Photography", "✦", "Video", "✦", "Creative Direction", "✦",
-  "Design", "✦", "Motion", "✦", "Illustration", "✦",
-  "Photography", "✦", "Video", "✦", "Creative Direction", "✦",
-];
-
 const Hero = ({ asteriskAnimation = "warmBreath" }: HeroProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -33,6 +26,11 @@ const Hero = ({ asteriskAnimation = "warmBreath" }: HeroProps) => {
 
       // Stagger-reveal hero text
       gsap.fromTo(
+        ".availability-badge",
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", delay: 0.1 }
+      );
+      gsap.fromTo(
         ".hero-content h1",
         { opacity: 0, y: 40 },
         { opacity: 1, y: 0, duration: 1.1, ease: "power3.out", delay: 0.2 }
@@ -42,23 +40,25 @@ const Hero = ({ asteriskAnimation = "warmBreath" }: HeroProps) => {
         { opacity: 0, y: 30 },
         { opacity: 1, y: 0, duration: 1, ease: "power3.out", delay: 0.55 }
       );
+
+      // Stagger the tags in
+      gsap.fromTo(
+        ".hero-tag",
+        { opacity: 0, y: 20, scale: 0.9 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.4)", stagger: 0.08, delay: 0.9 }
+      );
     },
     { scope: ref }
   );
 
   return (
     <>
-      {/* Animated ticker bar */}
-      <div className="accent-bar" aria-hidden="true">
-        <div className="accent-bar-inner">
-          {TICKER_ITEMS.map((item, i) => (
-            <span key={i}>{item}</span>
-          ))}
-        </div>
-      </div>
-
       <section className="hero" ref={ref}>
         <div className="hero-content">
+          <div className="availability-badge">
+            <span className="availability-dot" />
+            Available for projects
+          </div>
           <h1>
             <span>Selene Fernández</span>
             <svg
@@ -78,10 +78,15 @@ const Hero = ({ asteriskAnimation = "warmBreath" }: HeroProps) => {
             </svg>
           </h1>
           <p>
-            Step into my creative world! Explore my diverse portfolio showcasing
-            design and audiovisual production. I hope to inspire you and ignite your
-            own creative journey.
+            Design, motion, and a little bit of soul. This is where ideas become visuals
+            and every project gets made with care.
           </p>
+
+          <div className="hero-tags">
+            {["Illustration", "Motion Design", "Video Production", "Photography", "Creative Direction"].map((tag) => (
+              <span key={tag} className="hero-tag">{tag}</span>
+            ))}
+          </div>
         </div>
 
         {/* Scroll hint */}

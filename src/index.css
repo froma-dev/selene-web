@@ -99,6 +99,11 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.75); }
+}
+
 @keyframes asterisk-color {
   0%   { color: var(--electric-lime);  filter: drop-shadow(0 0 14px var(--electric-lime)); }
   25%  { color: var(--neon-cyan);      filter: drop-shadow(0 0 14px var(--neon-cyan)); }
@@ -228,26 +233,9 @@ button:focus-visible {
 
 /* ── Accent ticker bar ── */
 .accent-bar {
-  width: 100%;
-  overflow: hidden;
-  background: var(--gradient-accent);
-  background-size: 300% 300%;
-  animation: gradient-shift 8s ease infinite;
-  padding: 0.45rem 0;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #0D0D12;
-  white-space: nowrap;
+  display: none;
 }
 
 .accent-bar-inner {
-  display: inline-flex;
-  gap: 3rem;
-  animation: marquee 18s linear infinite;
-}
-
-.accent-bar-inner span {
-  flex-shrink: 0;
+  display: none;
 }
