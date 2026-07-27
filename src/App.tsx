@@ -25,7 +25,7 @@ type WorkItem = Asset | YoutubeVideoAssetProps;
 function App() {
   const [filters] = useState<Category[]>([]);
   const [works, setWorks] = useState<WorkItem[]>([]);
-  const [portfolio, setPortfolio] = useState<{
+  const [, setPortfolio] = useState<{
     categories: CategoryWithId[];
   }>({
     categories: [],
@@ -53,10 +53,10 @@ function App() {
         ]);
 
         if (mounted) {
-          setPortfolio({
-            ...portfolio,
+          setPortfolio((prevPortfolio) => ({
+            ...prevPortfolio,
             categories,
-          });
+          }));
           setWorks((prevWorks) => [...prevWorks, ...portfolioWorks]);
         }
       } catch (error) {
